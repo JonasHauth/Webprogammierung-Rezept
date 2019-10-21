@@ -1,0 +1,15 @@
+3 Seiten - alle gleichmäßig daran beteiligt
+
+1. Seite - Startseite
+	- Überblick Rezepte
+	- Menü mit Link zu Feedback-Formular, und irgendwie Beste Rezepte oder sowas
+
+2. Seite - Detailansicht Rezept
+	- Bild
+	- Zubereitung
+	- Zutaten
+3. Seite - Kontaktformular
+	- Name, Vorname
+	- E-Mail
+	- Nachricht
+	- Neues Rezept?
