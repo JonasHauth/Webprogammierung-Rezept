@@ -8,19 +8,25 @@
       <link rel="stylesheet" href="app.css" />
 
       <!-- Klassen für die einzelnen App-Seiten -->
+      <script src="page-start/page-start.js"></script>
+      <script src="page-detail/page-detail.js"></script>
+      <script src="page-not-found/page-not-found.js"></script>
 
       <!-- Anwendung starten -->
       <script>
           window.addEventListener("load", () => {
               let pages = [{
                   url: "^/$",
-                  klass: PageStart
+                  klass: PageStart,
+              },{
+                  url: "^/Detail/(.*)$",
+                  klass: PageDetail,
               },{
                   url: ".*",
                   klass: PageNotFound,
               }];
 
-              let app = new App("Segelfreunde", pages);
+              let app = new App("RezeptFinder", pages);
               app.run();
           });
       </script>
@@ -32,8 +38,17 @@
     <body>
       <header>
 
+        <nav>
+          <img class="logo" src="logo.png" alt="Logo" />
+        </nav>
+
       </header>
 
+      <main id="app-main-area">
+          Inhalt des Hauptbereichs
+      </main>
+
+      <a href="page-detail/page-detail.html">Link</a>
 
     </body>
 </html>
