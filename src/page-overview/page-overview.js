@@ -16,16 +16,27 @@ class PageOverview {
      * Seite anzeigen. Wird von der App-Klasse aufgerufen.
      */
     async show() {
-        // TODO: Seite anzeigen
-        debugger;
-        let mainElement = document.getElementById("app-main-area");
-        mainElement.innerHTML = "<button id='test-button'>Test</button>";
+        // Anzuzeigenden Seiteninhalt nachladen
+        let html = await fetch("page-overview/page-overview.html");
+        let css = await fetch("page-overview/page-overview.css");
 
-        let testButton = document.getElementById("test-button");
-        testButton.addEventListener("click", () => this.onTestButtonClicked());
-    }
+        if (html.ok && css.ok) {
+            html = await html.text();
+            css = await css.text();
+        } else {
+            console.error("Fehler beim Laden des HTML/CSS-Inhalts");
+            return;
+        }
 
-    onTestButtonClicked() {
-        alert("Test bestanden!")
+        // Seite zur Anzeige bringen
+        let pageDom = document.createElement("div");
+        pageDom.innerHTML = html;
+
+        this._renderBoatTiles(pageDom);
+
+        this._app.setPageTitle("Startseite");
+        this._app.setPageCss(css);
+        this._app.setPageHeader(pageDom.querySelector("header"));
+        this._app.setPageContent(pageDom.querySelector("main"));
     }
 }

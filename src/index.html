@@ -32,25 +32,22 @@
         <script>
             // Warten, bis die Seite komplett geladen wurde
             window.addEventListener("load", () => {
-                let pages = [{
-                  url: "^/§",
-                  // ^ Dach = nichts am Anfang
-                  // § Dollar = nichts am Ende
+              let pages = [{
+                  url: "^/$",
                   klass: PageOverview,
-                }, {
-                  url: "^/Detail/(.*)§",
-                  // (.*) = beliebiges Zeichen/Zeichenfolge
+              },{
+                  url: "^/Detail/(.*)$",
                   klass: PageDetail,
-                }, {
+              },{
                   url: ".*",
                   klass: PageNotFound,
-                  // Jede andere url
-                }]
+              }];
+              
                 let app = new App("Segelboote", pages);
                 app.run();
             });
         </script>
-        
+
         <style id="page-css"></style>
 
     </head>
