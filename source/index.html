@@ -1,8 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <meta charset="utf-8"/>
+      <meta charset="utf-8" />
+
+      <!-- Klasse App: Steuert die gesamte Anwendung -->
+      <script src="app.js"></script>
+      <link rel="stylesheet" href="app.css" />
+
+      <!-- Klassen für die einzelnen App-Seiten -->
+
+      <!-- Anwendung starten -->
+      <script>
+          window.addEventListener("load", () => {
+              let pages = [{
+                  url: "^/$",
+                  klass: PageStart
+              },{
+                  url: ".*",
+                  klass: PageNotFound,
+              }];
+
+              let app = new App("Segelfreunde", pages);
+              app.run();
+          });
+      </script>
+
+      <!-- Dummy-Element für dynamisch nachgeladene CSS-Regeln -->
+      <style id="page-css"></style>
+
     </head>
     <body>
+      <header>
+
+      </header>
+
+
     </body>
-  </html>
+</html>
