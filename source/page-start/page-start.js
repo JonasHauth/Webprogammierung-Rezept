@@ -1,3 +1,5 @@
+"use strict";
+
 class PageStart {
 
   constructor(app) {
