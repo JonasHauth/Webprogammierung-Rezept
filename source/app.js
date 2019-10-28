@@ -6,14 +6,19 @@ class App {
       this.currentPageObject = null;
   }
 
+// run ist die Hauptmethode, welche im HTML Dokument ausgeführt wird.
+// Event Behandlung für die Änderung der URL registrieren.
   run() {
 
-    window.addEventListener("hashchange", () => this.handleRouting());
-    this.handleRouting();
+    window.addEventListener("hashchange", () => this._handleRouting());
+    this._handleRouting();
 
   }
 
-  handleRouting() {
+// handleRouting wird zur Analyse der URL verwendet.
+// Die URL wird mit der Liste der definierten Seiten abgeglichen,
+// und ruft die show Methoden der Unterseiten auf.
+  _handleRouting() {
       let pageUrl = location.hash.slice(1);
 
       if (pageUrl.length === 0) {
@@ -29,9 +34,10 @@ class App {
       }
 
       this.currentPageObject = new page.klass(this);
-      this.currentPageObject.show(matches);
+      this.currentPageObject.show();
   }
 
+  //Hilfsmethode für das Setzen des Website Titels.
   setPageTitle(title) {
       // Optionen auswerten
       //options = options ? options : {};
@@ -51,10 +57,12 @@ class App {
       //}
   }
 
+  // Hilfsmethode für das Setzen der CSS Datei
   setPageCss(css) {
       document.querySelector("#page-css").innerHTML = css;
   }
 
+  // Hilfsmethode für das Setzen des Page Headers
   setPageHeader(element) {
       let container = document.querySelector("header > .content");
       container.innerHTML = "";
@@ -69,6 +77,7 @@ class App {
       }
   }
 
+  //Hilfsmethode für das Setzen des Seiteninhalts
   setPageContent(element) {
       let container = document.querySelector("#app-main-area");
       container.innerHTML = "";
