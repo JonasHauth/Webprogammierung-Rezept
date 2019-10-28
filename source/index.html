@@ -7,6 +7,9 @@
       <script src="app.js"></script>
       <link rel="stylesheet" href="app.css" />
 
+
+      <link rel="stylesheet" href="fontello/css/fontello.css" />
+
       <!-- Klassen für die einzelnen App-Seiten -->
       <script src="page-start/page-start.js"></script>
       <script src="page-detail/page-detail.js"></script>
@@ -37,7 +40,6 @@
     </head>
     <body>
       <header>
-
         <nav>
           <img class="logo" src="logo.jpg" alt="Logo" />
 
@@ -57,7 +59,26 @@
                   </a>
               </li>
           </ul>
-        </nav>
+
+
+        <!-- Übergreifendes App-Menü -->
+        <!--small-screen-hidden = großer Bildschirm-->
+        
+        <ul class="menu-right small-screen-hidden">
+            <li>
+                <a href="#/messages">
+                    <i class="icon-chat-empty"></i>
+                    <span class="small-screen-only">Benachrichtigungen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/profile">
+                    <i class="icon-user"></i>
+                    <span class="small-screen-only">Benutzerprofil</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
         <div class="content">
             Inhalt des Kopfbereichs

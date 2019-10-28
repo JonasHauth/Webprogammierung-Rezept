@@ -9,10 +9,28 @@ class App {
 // run ist die Hauptmethode, welche im HTML Dokument ausgeführt wird.
 // Event Behandlung für die Änderung der URL registrieren.
   run() {
-
+    document.querySelector("header nav .toggle-menu a").addEventListener("click", this._toggleHamburgerMenu);
     window.addEventListener("hashchange", () => this._handleRouting());
     this._handleRouting();
 
+  }
+
+  _toggleHamburgerMenu(event) {
+      // Hamburger-Menu ein- oder ausblenden
+      let menu = document.querySelector("header nav .menu-right");
+      if (!menu) return;
+
+      if (menu.classList.contains("small-screen-hidden")) {
+          menu.classList.remove("small-screen-hidden");
+      } else {
+          menu.classList.add("small-screen-hidden");
+      }
+
+      // Weitere Behandlung des Click-Events unterbinden, da wir hier keine
+      // neue Seite anfordern wollen.
+      if (event) {
+          event.preventDefault();
+      }
   }
 
 // handleRouting wird zur Analyse der URL verwendet.
@@ -38,23 +56,23 @@ class App {
   }
 
   //Hilfsmethode für das Setzen des Website Titels.
-  setPageTitle(title) {
+  setPageTitle(title, options) {
       // Optionen auswerten
-      //options = options ? options : {};
-      //let isSubPage = options.isSubPage ? options.isSubPage : false;
+      options = options ? options : {};
+      let isSubPage = options.isSubPage ? options.isSubPage : false;
 
       // Titel setzen
       document.querySelectorAll(".page-name").forEach(e => e.textContent = title);
       document.title = `${title}`;
 
-      // Entscheiden, ob der Zurückbutton angezeigt wird, oder nicht
-      //if (isSubPage) {
-      //    document.querySelector("header nav .go-back").classList.remove("hidden");
-      //    document.querySelector("header nav .dont-go-back").classList.add("hidden");
-      //} else {
-      //    document.querySelector("header nav .go-back").classList.add("hidden");
-      //    document.querySelector("header nav .dont-go-back").classList.remove("hidden");
-      //}
+      //Entscheiden, ob der Zurückbutton angezeigt wird, oder nicht
+      if (isSubPage) {
+          document.querySelector("header nav .go-back").classList.remove("hidden");
+          document.querySelector("header nav .dont-go-back").classList.add("hidden");
+      } else {
+          document.querySelector("header nav .go-back").classList.add("hidden");
+          document.querySelector("header nav .dont-go-back").classList.remove("hidden");
+      }
   }
 
   // Hilfsmethode für das Setzen der CSS Datei
