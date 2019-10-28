@@ -34,27 +34,27 @@ class App {
       }
 
       this.currentPageObject = new page.klass(this);
-      this.currentPageObject.show();
+      this.currentPageObject.show(matches);
   }
 
   //Hilfsmethode für das Setzen des Website Titels.
-  setPageTitle(title) {
+  setPageTitle(title, options) {
       // Optionen auswerten
-      //options = options ? options : {};
-      //let isSubPage = options.isSubPage ? options.isSubPage : false;
+      options = options ? options : {};
+      let isSubPage = options.isSubPage ? options.isSubPage : false;
 
       // Titel setzen
       document.querySelectorAll(".page-name").forEach(e => e.textContent = title);
       document.title = `${title}`;
 
       // Entscheiden, ob der Zurückbutton angezeigt wird, oder nicht
-      //if (isSubPage) {
-      //    document.querySelector("header nav .go-back").classList.remove("hidden");
-      //    document.querySelector("header nav .dont-go-back").classList.add("hidden");
-      //} else {
-      //    document.querySelector("header nav .go-back").classList.add("hidden");
-      //    document.querySelector("header nav .dont-go-back").classList.remove("hidden");
-      //}
+      if (isSubPage) {
+          //document.querySelector("header nav .go-back").classList.remove("hidden");
+          //document.querySelector("header nav .dont-go-back").classList.add("hidden");
+      } else {
+          //document.querySelector("header nav .go-back").classList.add("hidden");
+          //document.querySelector("header nav .dont-go-back").classList.remove("hidden");
+      }
   }
 
   // Hilfsmethode für das Setzen der CSS Datei
