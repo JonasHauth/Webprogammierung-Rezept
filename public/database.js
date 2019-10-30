@@ -18,6 +18,7 @@ class Database {
 
        this._db = firebase.firestore();
        this._rezepte = this._db.collection("rezepte");
+}
 
        this._data = [
      {
@@ -37,23 +38,57 @@ class Database {
   }
 
   async createDemoData () {
-    this.saveRezept([{
-                "id": "1",
-                "titel": "Gemüsebraten",
-                "zubereitung": "Einfach alles reinmachen",
-                "Aufwand": 3,
-                "Zeit": 15,
-            }]);
+    let rezepte = await this.selectAllRezepte();
+
+    if (rezepte.length < 1) {
+      this.saveRezepte([{
+          id:          "1",
+          img:        "food/rumpsteak.jpg",
+          name:       "Rumpsteak mit Balsamico-Tomaten",
+          aufwand:    "Mittel",
+          zeit:       "90 Minuten"
+      },{
+          id:          "2",
+          img:        "food/lasagne",
+          name:       "Hackfleisch-Lasagne",
+          aufwand:    "Mittel",
+          zeit:       "90 Minuten"
+      }]);
+    }
   }
+
 
   async selectRezeptById(id) {
         let result = await this._rezepte.doc(id).get();
         return result.data();
     }
 
+    async selectAllRezepte() {
+          let result = await this._rezepte.orderBy("title").get();
+          let rezepte = [];
+
+          result.forEach(entry => {
+              let rezept = entry.data();
+              rezepte.push(rezept);
+          });
+
+          return rezepte;
+      }
+
   async saveRezept(rezept){
-      this._rezepte.doc(book.id).set(book);
+      this._rezepte.doc(rezept.id).set(rezept);
   }
+
+  async saveRezepte(rezepte) {
+          let batch = this._db.batch();
+
+          rezepte.forEach(rezept => {
+              let dbRezept = this._rezepte.doc(rezept.id);
+              batch.set(dbRezept, rezept);
+          });
+
+          return batch.commit();
+      }
   async deleteRezeptbyId(id) {
        return this._rezepte.doc(id).delete();
   }
