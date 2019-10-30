@@ -36,7 +36,7 @@ class PageDetail {
         // Seite zur Anzeige bringen
         let pageDom = this._processTemplate(html);
 
-        this._app.setPageTitle(`Rezept: ${this._data.rezeptname}`, {isSubPage: true});
+        this._app.setPageTitle(`Rezept: ${this._data.name}`, {isSubPage: true});
         this._app.setPageCss(css);
         this._app.setPageHeader(pageDom.querySelector("header"));
         this._app.setPageContent(pageDom.querySelector("main"));
@@ -44,14 +44,10 @@ class PageDetail {
 
      /**
      * Hilfsmethode, welche den HTML-Code der eingelesenen HTML-Datei bearbeitet
-     * und anhand der eingelesenen Daten ergänzt. Zusätzlich wird hier ein
-     * Event Handler für den Button registriert.
-     *
-     * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
-     * mit den HTML-Templates dieser Seite.
+     * und anhand der eingelesenen Daten ergänzt. 
      */
 
-/**
+/*
     _processTemplate(html) {
         // Platzhalter mit den eingelesenen Daten ersetzen
         html = html.replace(/{IMG}/g, this._data.img);
@@ -59,6 +55,7 @@ class PageDetail {
         html = html.replace(/{ZEIT}/g, this._data.zeit;
         html = html.replace(/{AUFWAND}/g, this._data.aufwand);
 
+        pageDom.querySelectorAll(".id").forEach(e => e.textContent = this._recordId);
 
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
@@ -66,6 +63,6 @@ class PageDetail {
 
         return pageDom;
     }
-    */
+*/
 
 }
