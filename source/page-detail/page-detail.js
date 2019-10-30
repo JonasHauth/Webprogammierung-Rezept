@@ -60,6 +60,7 @@ class PageDetail {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
+
         return pageDom;
     }
 

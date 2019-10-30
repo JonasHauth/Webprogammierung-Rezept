@@ -11,6 +11,8 @@
       <script src="app.js"></script>
       <link rel="stylesheet" href="app.css" />
 
+      <!-- Klasse Database: Implementiert Anbindung an Firebase Datenbank -->
+      <script src="database.js"></script>
 
       <link rel="stylesheet" href="fontello/css/fontello.css" />
 
@@ -18,6 +20,7 @@
       <script src="page-start/page-start.js"></script>
       <script src="page-detail/page-detail.js"></script>
       <script src="page-not-found/page-not-found.js"></script>
+      <script src="page-submit/page-submit.js"></script>
 
       <!-- Anwendung starten -->
       <script>
@@ -29,10 +32,12 @@
                   url: "^/Detail/(.*)$",
                   klass: PageDetail,
               },{
+                  url: "^/submit",
+                  klass: PageSubmit,
+              },{
                   url: ".*",
                   klass: PageNotFound,
               }];
-
               let app = new App("RezeptFinder", pages);
               app.run();
           });
@@ -67,10 +72,10 @@
 
         <!-- Übergreifendes App-Menü -->
         <!--small-screen-hidden = großer Bildschirm-->
-        
+
         <ul class="menu-right small-screen-hidden">
             <li>
-                <a href="#/messages">
+                <a href="#/submit">
                     <i class="icon-chat-empty"></i>
                     <span class="small-screen-only">Benachrichtigungen</span>
                 </a>

@@ -4,6 +4,8 @@ class App {
       this.title = title;
       this.pages = pages;
       this.currentPageObject = null;
+      this.db = new Database(this);
+
   }
 
 // run ist die Hauptmethode, welche im HTML Dokument ausgeführt wird.
@@ -51,7 +53,7 @@ class App {
           return;
       }
 
-      this.currentPageObject = new page.klass(this);
+      this.currentPageObject = new page.klass(this, this.db);
       this.currentPageObject.show(matches);
   }
 
