@@ -1,7 +1,10 @@
 "use strict";
 
 class Database {
-  constructor() {
+  constructor(app) {
+
+    this.app = app;
+
     firebase.initializeApp({
       apiKey: "AIzaSyCqun6HRisfdCVH7PoWShcV7DOGSOhQHw4",
       authDomain: "rezeptefinder.firebaseapp.com",
@@ -34,7 +37,13 @@ class Database {
   }
 
   async createDemoData () {
-
+    this.saveRezept([{
+                "id": "1",
+                "titel": "Gemüsebraten",
+                "zubereitung": "Einfach alles reinmachen",
+                "Aufwand": 3,
+                "Zeit": 15,
+            }]);
   }
 
   async selectRezeptById(id) {
@@ -47,9 +56,5 @@ class Database {
   }
   async deleteRezeptbyId(id) {
        return this._rezepte.doc(id).delete();
-  }
-
-  getAllRezepte() {
-    return this._data;
   }
 }

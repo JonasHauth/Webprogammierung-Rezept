@@ -6,7 +6,8 @@ class PageDetail {
      * Konstruktor
      * @param {App} app Zentrale Instanz der App-Klasse
      */
-    constructor(app) {
+    constructor(app, db) {
+        this.db = db;
         this._app = app;
         this._recordId = -1;
         this._data = null;
@@ -49,6 +50,8 @@ class PageDetail {
      * @param {HTMLElement} pageDom Wurzelelement der eingelesenen HTML-Datei
      * mit den HTML-Templates dieser Seite.
      */
+
+/**
     _processTemplate(html) {
         // Platzhalter mit den eingelesenen Daten ersetzen
         html = html.replace(/{IMG}/g, this._data.img);
@@ -60,7 +63,9 @@ class PageDetail {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
+
         return pageDom;
     }
+    */
 
 }
