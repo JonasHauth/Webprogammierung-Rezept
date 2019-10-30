@@ -28,12 +28,12 @@ class Database {
          zeit:       "90 Minuten"
      },{
          id:          2,
-         img:        "food/lasagne",
+         img:        "food/lasagne.jpg",
          name:       "Hackfleisch-Lasagne",
          aufwand:    "Mittel",
          zeit:       "90 Minuten"
      }
- ];
+    ];
   }
 
   async createDemoData () {
@@ -56,5 +56,9 @@ class Database {
   }
   async deleteRezeptbyId(id) {
        return this._rezepte.doc(id).delete();
+  }
+
+  getAllRecords() {
+      return this._data;
   }
 }
