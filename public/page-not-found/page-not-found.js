@@ -9,9 +9,11 @@ class PageNotFound {
      * Konstruktor
      * @param {App} app Zentrale Instanz der App-Klasse
      */
-    constructor(app) {
-        this._app = app;
-    }
+     constructor(app, db) {
+         this.app = app;
+         this.db = db;
+
+     }
 
     /**
      * Seite anzeigen. Wird von der App-Klasse aufgerufen.
