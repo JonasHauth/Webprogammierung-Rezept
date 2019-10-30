@@ -15,6 +15,22 @@ class Database {
 
        this._db = firebase.firestore();
        this._rezepte = this._db.collection("rezepte");
+
+       this._data = [
+     {
+         id:          1,
+         img:        "food/rumpsteak.jpg",
+         name:       "Rumpsteak mit Balsamico-Tomaten",
+         aufwand:    "Mittel",
+         zeit:       "90 Minuten"
+     },{
+         id:          2,
+         img:        "food/lasagne",
+         name:       "Hackfleisch-Lasagne",
+         aufwand:    "Mittel",
+         zeit:       "90 Minuten"
+     }
+ ];
   }
 
   async createDemoData () {
