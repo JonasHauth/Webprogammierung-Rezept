@@ -44,7 +44,7 @@ class PageDetail {
 
      /**
      * Hilfsmethode, welche den HTML-Code der eingelesenen HTML-Datei bearbeitet
-     * und anhand der eingelesenen Daten ergänzt. 
+     * und anhand der eingelesenen Daten ergänzt.
      */
 
 /*
@@ -55,7 +55,6 @@ class PageDetail {
         html = html.replace(/{ZEIT}/g, this._data.zeit;
         html = html.replace(/{AUFWAND}/g, this._data.aufwand);
 
-        pageDom.querySelectorAll(".id").forEach(e => e.textContent = this._recordId);
 
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
