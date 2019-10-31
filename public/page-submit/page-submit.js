@@ -44,6 +44,8 @@ class PageSubmit {
         aufwand:    "Mittel",
         zeit:       "90 Minuten"
     })
+    let rezept = this.db.selectAllRezepte().then().toString();
+    console.log(rezept);
   }
 
 
