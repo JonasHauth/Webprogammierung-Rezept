@@ -44,7 +44,7 @@ class Database {
 
   async selectRezeptById(id) {
         let result = await this._rezepte.doc(id).get();
-        return result.data();
+        return result;
     }
 
     async selectAllRezepte() {
