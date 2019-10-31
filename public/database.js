@@ -20,6 +20,22 @@ class Database {
        this._rezepte = this._db.collection("rezepte");
 }
 
+       this._data = [
+     {
+         id:          1,
+         img:        "food/rumpsteak.jpg",
+         name:       "Rumpsteak mit Balsamico-Tomaten",
+         aufwand:    "Mittel",
+         zeit:       "90 Minuten"
+     },{
+         id:          2,
+         img:        "food/lasagne.jpg",
+         name:       "Hackfleisch-Lasagne",
+         aufwand:    "Mittel",
+         zeit:       "90 Minuten"
+     }
+    ];
+  }
 
   async createDemoData () {
     let rezepte = await this.selectAllRezepte();
@@ -75,5 +91,9 @@ class Database {
       }
   async deleteRezeptbyId(id) {
        return this._rezepte.doc(id).delete();
+  }
+
+  getAllRecords() {
+      return this._data;
   }
 }
