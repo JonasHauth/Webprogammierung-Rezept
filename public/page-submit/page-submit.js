@@ -25,22 +25,29 @@ class PageSubmit {
       let pageDom = document.createElement("div");
       pageDom.innerHTML = html;
 
-
+      pageDom.querySelector("#submit-button").addEventListener("click", () => this.onSubmitButtonClicked());
 
       this.app.setPageTitle("Einreichen", {isSubPage: true});
       this.app.setPageCss(css);
       this.app.setPageHeader(pageDom.querySelector("header"));
       this.app.setPageContent(pageDom.querySelector("main"));
-
-
-      pageDom.querySelector("#on-submit-button").addEventListener("click", () => this.onSubmitButtonClicked());
   }
 
+  // Ereignisbehandlung Submit Button
+  // Speichert den Eintrag in Datenbank
   onSubmitButtonClicked() {
-
+    this.db.createDemoData();
+    this.db.saveRezept({
+        id:          "3",
+        img:        "food/rumpsteak.jpg",
+        name:       "Rumpsteak mit Balsamico-Tomaten",
+        aufwand:    "Mittel",
+        zeit:       "90 Minuten"
+    })
+    let rezept = this.db.selectAllRezepte().then().toString();
+    console.log(rezept);
   }
 
-      // Ereignisbehandlung Submit Button
-      // Speichert den Eintrag in Datenbank
+
 
 }
