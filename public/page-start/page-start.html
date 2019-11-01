@@ -3,37 +3,20 @@
 </header>
 
 <main>
-<!--
-
-<div>
-    <p>
-        Hier sollten irgendwelche Details zum Segelschiff {NAME} stehen. <br />
-        Stattdessen gibt es hier nur einen Link zum
-        <a href="{LINK}" target="_blank">Wikipedia-Artikel</a>.
-    </p>
-    <button id="show-more-button">Und einen Button</button>
-</div>
-
-<div>
-  <p>Hallo</p>
-</div>
-
--->
-
-<p>Vorspeise</p>
-
-<p>Hauptspeise</p>
-
-
+    <p>Hauptspeise</p>
+</main>
 <div id="template-tile">
-    <div class="tile">
-        <a href="{HREF}">
-            <img src="{IMG}" alt=""/>
-            <div>{NAME}</div>
-            <div>Zubereitungszeit: {ZEIT}</div>
-            <div>Aufwand: {AUFWAND}</div>
-        </a>
+    <div class="container">
+        <!-- Zeile mit zwei gleichgroßen Spalten -->
+        <div class="row">
+            <div class="col-md-6">
+                <a href="{HREF}">
+                    <img src="{IMG}" alt=""/>
+                    <div>{NAME}</div>
+                    <div>Zubereitungszeit: {ZEIT}</div>
+                    <div>Aufwand: {AUFWAND}</div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
-
-</main>

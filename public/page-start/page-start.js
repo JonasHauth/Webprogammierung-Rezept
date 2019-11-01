@@ -11,7 +11,7 @@ class PageStart {
   async show() {
       // Anzuzeigenden Seiteninhalt nachladen
       let html = await fetch("page-start/page-start.html");
-      let css = await fetch("page-start/page-start.css");
+      let css = await fetch("bootstrap/css/bootstrap.css");
 
       if (html.ok && css.ok) {
           html = await html.text();
