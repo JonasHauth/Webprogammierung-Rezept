@@ -36,16 +36,17 @@ class PageSubmit {
   // Ereignisbehandlung Submit Button
   // Speichert den Eintrag in Datenbank
   onSubmitButtonClicked() {
-    this.db.createDemoData();
-    this.db.saveRezept({
-        id:          "3",
-        img:        "food/rumpsteak.jpg",
-        name:       "Rumpsteak mit Balsamico-Tomaten",
-        aufwand:    "Mittel",
-        zeit:       "90 Minuten"
-    })
-    let rezept = this.db.selectAllRezepte().then().toString();
-    console.log(rezept);
+  //  this.db.createDemoData();
+  //  this.db.saveRezept({
+  /*      "id":          "3",
+        "img":        "food/rumpsteak.jpg",
+        "name":       "Rumpsteak mit Balsamico-Tomaten",
+        "aufwand":    "Mittel",
+        "zeit":       "90 Minuten"
+    })*/
+    let rezept = this.db.writeRezept("Hähnchen", "einfach machen", 5, 50 );
+    let rezpte = this.db.getAllRezepte();
+    
   }
 
 
