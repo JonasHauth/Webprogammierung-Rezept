@@ -6,15 +6,24 @@ class Database {
     this.app = app;
 
     firebase.initializeApp({
-      apiKey: 'AIzaSyCqun6HRisfdCVH7PoWShcV7DOGSOhQHw4',
-      authDomain: 'https://rezeptefinder.firebaseio.com',
-      projectId: 'rezeptefinder'
+      apiKey: "AIzaSyCqun6HRisfdCVH7PoWShcV7DOGSOhQHw4",
+      authDomain: "rezeptefinder.firebaseapp.com",
+      databaseURL: "gs://rezeptefinder.appspot.com/",
+      projectId: "rezeptefinder",
+      storageBucket: "rezeptefinder.appspot.com",
+      messagingSenderId: "1073345181097",
+      appId: "1:1073345181097:web:4e448a1ec88b36108cc0b8",
+      measurementId: "G-KZM50L6CCE"
     });
 
+
     this.rezepteFirestore = firebase.firestore();
+    this.rezepteFirestorage = firebase.storage().ref();
     this.rezepteCollection = this.rezepteFirestore.collection("rezepte");
 
-       this._data = [{
+
+
+    this._data = [{
          id:          1,
          img:        "food/rumpsteak.jpg",
          name:       "Rumpsteak mit Balsamico-Tomaten",
@@ -28,6 +37,8 @@ class Database {
          zeit:       "90 Minuten"
      }];
   }
+
+  bildurl;
 
 /*
 Datenstruktur
@@ -45,12 +56,23 @@ img: Referenz auf Datei in Firestorage als String übergeben
 */
 
 
-  async writeRezept(name, zubereitung, aufwand, zubereitungszeit) {
+  async writeRezept(name, zubereitung, aufwand, zubereitungszeit, file) {
+    let downloadurl;
+    let path = (+new Date()) + '-' + file.name;
+    let metadata = {
+      contentType: file.type
+    };
+
+    let rezepteFirestoragedir = this.rezepteFirestorage.child(path);
+    rezepteFirestoragedir.put(file, metadata)
+    .catch(console.error);
+
     this.rezepteCollection.doc(name).set({
     name: name,
     zubereitung: zubereitung,
     aufwand: aufwand,
-    zubereitungszeit: zubereitungszeit
+    zubereitungszeit: zubereitungszeit,
+    img: path
     }).then(function() {
     console.log("Rezept eingereicht");
     }).catch(function(error) {
@@ -64,11 +86,16 @@ img: Referenz auf Datei in Firestorage als String übergeben
 
     result.forEach(entry => {
       let rezept = entry.data();
-      console.log(rezept);
-      rezepte.push(rezepte);
+      rezepte.push(rezept);
     });
 
     return rezepte;
+  };
+
+  getpictureURL(rezept, ) {
+    let path = rezept.path;
+    let rezepteFirestoragedir = this.rezepteFirestorage.child(path);
+
   };
 
   getAllRecords() {

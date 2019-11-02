@@ -25,28 +25,27 @@ class PageSubmit {
       let pageDom = document.createElement("div");
       pageDom.innerHTML = html;
 
-      pageDom.querySelector("#submit-button").addEventListener("click", () => this.onSubmitButtonClicked());
+      pageDom.querySelector("#contactForm").addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.writetoDB();
+      });
+      //pageDom.querySelector("#submit-button").addEventListener("click", () => this.onSubmitButtonClicked());
 
       this.app.setPageTitle("Einreichen", {isSubPage: true});
       this.app.setPageCss(css);
       this.app.setPageHeader(pageDom.querySelector("header"));
       this.app.setPageContent(pageDom.querySelector("main"));
-  }
+  };
 
   // Ereignisbehandlung Submit Button
   // Speichert den Eintrag in Datenbank
-  onSubmitButtonClicked() {
-  //  this.db.createDemoData();
-  //  this.db.saveRezept({
-  /*      "id":          "3",
-        "img":        "food/rumpsteak.jpg",
-        "name":       "Rumpsteak mit Balsamico-Tomaten",
-        "aufwand":    "Mittel",
-        "zeit":       "90 Minuten"
-    })*/
-    let rezept = this.db.writeRezept("Hähnchen", "einfach machen", 5, 50 );
-    let rezpte = this.db.getAllRezepte();
-    
+
+   writetoDB() {
+    let file = document.querySelector('#image').files[0];
+
+    this.db.writeRezept("Hähnchen", "einfach machen", 5, 50, file);
+    this.db.writeRezept("Hackbraten", "einfach machen", 5, 50, file);
+
   }
 
 
