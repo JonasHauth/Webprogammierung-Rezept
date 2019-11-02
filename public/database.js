@@ -101,4 +101,17 @@ img: Referenz auf Datei in Firestorage als String übergeben
   getAllRecords() {
       return this._data;
   }
+
+//für Datenbankzugriff, wenn diese fertig ist
+  async selectRezeptById(id) {
+        //let result = await this.rezepteCollection.doc(id).get();
+        //return result;
+        let result;
+        for(let i = 0; i < this._data.length; i++) {
+          if(this._data[i].id == id) {
+            result = this._data[i];
+          }
+        }
+        return result;
+    }
 }
