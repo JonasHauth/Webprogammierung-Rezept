@@ -5,6 +5,7 @@ class Database {
 
     this.app = app;
 
+    // Firebase initialisieren mit allen Diensten.
     firebase.initializeApp({
       apiKey: "AIzaSyCqun6HRisfdCVH7PoWShcV7DOGSOhQHw4",
       authDomain: "rezeptefinder.firebaseapp.com",
@@ -16,29 +17,12 @@ class Database {
       measurementId: "G-KZM50L6CCE"
     });
 
-
+    // Referenz für Filestorage anlegen
     this.rezepteFirestore = firebase.firestore();
+    // Referenz für Database anlegen
     this.rezepteFirestorage = firebase.storage().ref();
     this.rezepteCollection = this.rezepteFirestore.collection("rezepte");
-
-
-
-    this._data = [{
-         id:          1,
-         img:        "food/rumpsteak.jpg",
-         name:       "Rumpsteak mit Balsamico-Tomaten",
-         aufwand:    "Mittel",
-         zeit:       "90 Minuten"
-     },{
-         id:          2,
-         img:        "food/lasagne.jpg",
-         name:       "Hackfleisch-Lasagne",
-         aufwand:    "Mittel",
-         zeit:       "90 Minuten"
-     }];
   }
-
-  bildurl;
 
 /*
 Datenstruktur
@@ -46,44 +30,43 @@ name: String, ist eindeutige ID. Das heißt es kann z.B. nur ein Rezept mit dem 
 zubereitung: String
 aufwand: Wertebereicht 1-5, gespeichert als int.
 zubereitungszeit: int in Minuten
+img: Referenz auf Datei in Firestorage als String übergeben
 
 
 Implementation später:
 zutaten: Unterarray mit Strings
-img: Referenz auf Datei in Firestorage als String übergeben
-
+kategorie: String
 
 */
 
 
-  async writeRezept(name, zubereitung, aufwand, zubereitungszeit, file) {
-    let downloadurl;
+  async writeRezept(name, zubereitung, aufwand, zubereitungszeit, kategorie, zutaten, file) {
+    // Pfad für Bild aus Datum und Dateinamen konkatenieren
     let path = (+new Date()) + '-' + file.name;
-    let metadata = {
-      contentType: file.type
-    };
-
+    // Directory in Firestorage anlegen
     let rezepteFirestoragedir = this.rezepteFirestorage.child(path);
-    rezepteFirestoragedir.put(file, metadata)
-    .catch(console.error);
+    // Bild in Directory hochladen
+    rezepteFirestoragedir.put(file).catch(console.error);
 
+    // Upload der Informationen aus Einreichen Formular in Firebase Datenbank
     this.rezepteCollection.doc(name).set({
     name: name,
     zubereitung: zubereitung,
     aufwand: aufwand,
     zubereitungszeit: zubereitungszeit,
+    kategorie: kategorie,
+    zutaten: zutaten,
     img: path
-    }).then(function() {
-    console.log("Rezept eingereicht");
-    }).catch(function(error) {
-    console.error("Einreichen fehlgeschlagen: ", error);
-    });
+    // Weitere Behandlung, Log Rezept eingereicht oder Error
+    }).then(function() { console.log("Rezept eingereicht"); }).catch(function(error) { console.error("Einreichen fehlgeschlagen: ", error); });
   }
 
   async getAllRezepte() {
+    // Alle Datensätze aus der Firebase Database nach Schlüssel Name sortiert auslesen
     let result = await this.rezepteCollection.orderBy("name").get();
     let rezepte = [];
 
+    // Über die Datzensätze loopen und in Datensätze in den Array rezpte speichen
     result.forEach(entry => {
       let rezept = entry.data();
       rezepte.push(rezept);
@@ -92,17 +75,7 @@ img: Referenz auf Datei in Firestorage als String übergeben
     return rezepte;
   };
 
-  getpictureURL(rezept, ) {
-    let path = rezept.path;
-    let rezepteFirestoragedir = this.rezepteFirestorage.child(path);
-
-  };
-
-  getAllRecords() {
-      return this._data;
-  }
-
-//für Datenbankzugriff, wenn diese fertig ist
+//für Datenbankzugriff, Nicht bereit
   async selectRezeptById(id) {
         //let result = await this.rezepteCollection.doc(id).get();
         //return result;

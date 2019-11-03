@@ -43,8 +43,8 @@ class PageSubmit {
    writetoDB() {
     let file = document.querySelector('#image').files[0];
 
-    this.db.writeRezept("Hähnchen", "einfach machen", 5, 50, file);
-    this.db.writeRezept("Hackbraten", "einfach machen", 5, 50, file);
+    this.db.writeRezept("Müsli", "einfach machen", 5, 50, "Frühstück", ["Saab", "Volvo", "BMW"], file);
+    this.db.writeRezept("Hackbraten", "einfach machen", 5, 50, "Mittagessen", ["Saab", "Volvo", "BMW"], file);
 
   }
 
