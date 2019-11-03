@@ -49,6 +49,51 @@ class PageStart {
         await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
         html = html.replace("{NAME}", rezepte[i].name);
         html = html.replace("{ZEIT}", rezepte[i].zubereitungszeit);
+        let anzahlSterne = rezepte[i].aufwand;
+        switch (anzahlSterne){
+            case 5:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star-filled");
+            html = html.replace("{Stern4}", "icon-star-filled");
+            html = html.replace("{Stern5}", "icon-star-filled");
+            break;
+            case 4:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star-filled");
+            html = html.replace("{Stern4}", "icon-star-filled");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 3:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star-filled");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 2:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 1:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star");
+            html = html.replace("{Stern3}", "icon-star");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 0:
+            html = html.replace("{Stern1}", "icon-star");
+            html = html.replace("{Stern2}", "icon-star");
+            html = html.replace("{Stern3}", "icon-star");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+        }
         html = html.replace("{AUFWAND}", rezepte[i].aufwand);
         mainElement.innerHTML += html;
     }
