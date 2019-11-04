@@ -31,11 +31,11 @@ zubereitung: String
 aufwand: Wertebereicht 1-5, gespeichert als int.
 zubereitungszeit: int in Minuten
 img: Referenz auf Datei in Firestorage als String übergeben
+kategorie: String
 
 
 Implementation später:
 zutaten: Unterarray mit Strings
-kategorie: String
 
 */
 
