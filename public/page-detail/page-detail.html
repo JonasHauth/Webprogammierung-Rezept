@@ -1,43 +1,49 @@
-<!---<link href="css/bootstrap.min.css" rel="stylesheet">!--->
+<!DOCTYPE html>
 <header>
-  <div class="page-heading">
-    <div>
-      <h1>{NAME}</h1>
-    </div>
-  </div>
-  <ul class="tab-buttons">
-      <li class="active">
-          Übersicht
-      </li>
-      <li>
-          Zutaten
-      </li>
-      <li>
-          Zubereitung
-      </li>
-  </ul>
 
+      <h1>{NAME}</h1>
+
+      <ul class="nav nav-tabs">
+      			<li class="nav-item">
+              <a id = "overview" href="#overview" class="nav-link active">Übersicht</a>
+      			</li>
+      			<li class="nav-item">
+              <a id ="zutaten" href="#zutaten" class="nav-link active"">Zutaten</a>
+      			</li>
+      	</ul>
+
+      			<div class="tab-content ">
+      			  <div class="tab-pane active" id="overview">
+                <h3>{ZEIT}</h3>
+      				</div>
+      				<div class="tab-pane" id="zutaten">
+                <h3>karotte</h3>
+      			</div>
+        </div>
 
 </header>
-
 <main>
-  <img src="{IMG}" alt="" />
-<div id="template-tile">
-  <p>
-    <div class="overview"
-      <div class="time">
-        <h2>Zeit</h2>
-        <div class="value">
-          {ZEIT}
-        </div>
-      </div>
-      <div class="effort">
-        <h2>Aufwand</h2>
-      </div>
-      <div class="value">
-        {AUFWAND}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{IMG}" alt="" class="img-fluid" />
+    </div>
+    <div class="col-md-6">
+      <div class="overview">
+          <h2>Zeit:
+            <i class="value">
+              {ZEIT} Minuten
+            </i>
+          </h2>
+          <h2>Aufwand:
+          <i class="{Stern1}"></i>
+          <i class="{Stern2}"></i>
+          <i class="{Stern3}"></i>
+          <i class="{Stern4}"></i>
+          <i class="{Stern5}"></i>
+          </h2>
       </div>
     </div>
-  </p>
   </div>
+</div>
 </main>

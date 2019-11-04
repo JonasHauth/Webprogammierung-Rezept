@@ -7,9 +7,9 @@ class PageDetail {
      */
 
 
-    constructor(app, db) {
+    constructor(app, rezept) {
         this.app = app;
-        this.db = db;
+        this.rezept = rezept;
         this.recordId = -1;
 
     }
@@ -19,18 +19,17 @@ class PageDetail {
     async show(matches) {
         // URL-Parameter auswerten
         this.recordId = matches[1];
-    //    this.db = this.db.selectRezeptById(this.recordId);
         let rezepte = await this.app.db.getAllRezepte();
 
         for(let i = 0; i < rezepte.length; i++) {
           if(this.recordId == rezepte[i].name) {
-            this.db = rezepte[i];
+            this.rezept = rezepte[i];
           }
         }
 
         // Anzuzeigenden Seiteninhalt nachladen
         let html = await fetch("page-detail/page-detail.html");
-        let css = await fetch("page-detail/page-detail.css");
+        let css = await fetch("bootstrap-detail/css/bootstrap.css");
 
         if (html.ok && css.ok) {
             html = await html.text();
@@ -40,13 +39,20 @@ class PageDetail {
             return;
         }
 
-        // Seite zur Anzeige bringen
-        let pageDom = await   this._renderFoodTiles(html);
+        //document.getElementByClassName("nav-item").addEventListener("click", tabListener);
 
-        this.app.setPageTitle(`Rezept: ${this.db.name}`, {isSubPage: true});
+
+        try {
+        // Seite zur Anzeige bringen
+        let pageDom = await this._renderFoodTiles(html);
+
+        this.app.setPageTitle(`Rezept: ${this.rezept.showname}`, {isSubPage: true});
         this.app.setPageCss(css);
         this.app.setPageHeader(pageDom.querySelector("header"));
         this.app.setPageContent(pageDom.querySelector("main"));
+      } catch(err){
+        console.error(err);
+      }
     }
 
      /**
@@ -58,11 +64,57 @@ class PageDetail {
     async _renderFoodTiles(html) {
 
         // Platzhalter mit den eingelesenen Daten ersetzen
-        let reftoPicture = await this.app.db.rezepteFirestorage.child(this.db.img);
+        let reftoPicture = await this.app.db.rezepteFirestorage.child(this.rezept.img);
         await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
-        html = html.replace(/{NAME}/g, this.db.name);
-        html = html.replace(/{ZEIT}/g, this.db.zubereitungszeit);
-        html = html.replace(/{AUFWAND}/g, this.db.aufwand);
+        html = html.replace(/{NAME}/g, this.rezept.showname);
+        html = html.replace(/{ZEIT}/g, this.rezept.zubereitungszeit);
+
+
+        let anzahlSterne = this.rezept.aufwand;
+        switch (anzahlSterne){
+            case 5:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star-filled");
+            html = html.replace("{Stern4}", "icon-star-filled");
+            html = html.replace("{Stern5}", "icon-star-filled");
+            break;
+            case 4:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star-filled");
+            html = html.replace("{Stern4}", "icon-star-filled");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 3:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star-filled");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 2:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star-filled");
+            html = html.replace("{Stern3}", "icon-star");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 1:
+            html = html.replace("{Stern1}", "icon-star-filled");
+            html = html.replace("{Stern2}", "icon-star");
+            html = html.replace("{Stern3}", "icon-star");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+            case 0:
+            html = html.replace("{Stern1}", "icon-star");
+            html = html.replace("{Stern2}", "icon-star");
+            html = html.replace("{Stern3}", "icon-star");
+            html = html.replace("{Stern4}", "icon-star");
+            html = html.replace("{Stern5}", "icon-star");
+            break;
+        }
 
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
@@ -70,5 +122,14 @@ class PageDetail {
         return pageDom;
     }
 
-
+    /*
+    tabListener() {
+        let menu = document.querySelector("header .nav-tabs");
+      if (menu.classList.contains("active")) {
+          menu.classList.remove("active");
+      } else {
+          menu.classList.add("active");
+      }
+    }
+    */
 }

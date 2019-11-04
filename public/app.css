@@ -64,7 +64,7 @@ html {
  }
  header nav .page-name {
      font-weight: bold;
-     font-size: 75px;
+     font-size: auto;
  }
 
  header nav .logo {
@@ -188,6 +188,7 @@ html {
      header nav .menu-left i{
          font-size: 2em;
      }
+
 
  }
 
