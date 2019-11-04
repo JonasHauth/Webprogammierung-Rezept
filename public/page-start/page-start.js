@@ -94,7 +94,60 @@ class PageStart {
             html = html.replace("{Stern5}", "icon-star");
             break;
         }
-        html = html.replace("{AUFWAND}", rezepte[i].aufwand);
+        i++;
+        if (rezepte[i] != null){
+            html = html.replace("{HREF}", `#/Detail/${rezepte[i].name}`);
+            // Auslesen der Firestorage URL des Bildes und setzten als scr Attribut
+            let reftoPicture = await this.app.db.rezepteFirestorage.child(rezepte[i].img);
+            await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
+            html = html.replace("{NAME}", rezepte[i].showname);
+            html = html.replace("{ZEIT}", rezepte[i].zubereitungszeit);
+            let anzahlSterne = rezepte[i].aufwand;
+            switch (anzahlSterne){
+                case 5:
+                html = html.replace("{Stern1}", "icon-star-filled");
+                html = html.replace("{Stern2}", "icon-star-filled");
+                html = html.replace("{Stern3}", "icon-star-filled");
+                html = html.replace("{Stern4}", "icon-star-filled");
+                html = html.replace("{Stern5}", "icon-star-filled");
+                break;
+                case 4:
+                html = html.replace("{Stern1}", "icon-star-filled");
+                html = html.replace("{Stern2}", "icon-star-filled");
+                html = html.replace("{Stern3}", "icon-star-filled");
+                html = html.replace("{Stern4}", "icon-star-filled");
+                html = html.replace("{Stern5}", "icon-star");
+                break;
+                case 3:
+                html = html.replace("{Stern1}", "icon-star-filled");
+                html = html.replace("{Stern2}", "icon-star-filled");
+                html = html.replace("{Stern3}", "icon-star-filled");
+                html = html.replace("{Stern4}", "icon-star");
+                html = html.replace("{Stern5}", "icon-star");
+                break;
+                case 2:
+                html = html.replace("{Stern1}", "icon-star-filled");
+                html = html.replace("{Stern2}", "icon-star-filled");
+                html = html.replace("{Stern3}", "icon-star");
+                html = html.replace("{Stern4}", "icon-star");
+                html = html.replace("{Stern5}", "icon-star");
+                break;
+                case 1:
+                html = html.replace("{Stern1}", "icon-star-filled");
+                html = html.replace("{Stern2}", "icon-star");
+                html = html.replace("{Stern3}", "icon-star");
+                html = html.replace("{Stern4}", "icon-star");
+                html = html.replace("{Stern5}", "icon-star");
+                break;
+                case 0:
+                html = html.replace("{Stern1}", "icon-star");
+                html = html.replace("{Stern2}", "icon-star");
+                html = html.replace("{Stern3}", "icon-star");
+                html = html.replace("{Stern4}", "icon-star");
+                html = html.replace("{Stern5}", "icon-star");
+                break;
+            }
+        }
         mainElement.innerHTML += html;
     }
   }
