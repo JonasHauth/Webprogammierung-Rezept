@@ -43,11 +43,11 @@ class PageStart {
       // Loope über den Rezept-Array und setzte die entsprechenden Elemente in das HTML Template ein und füge es dem HTML hinzu
       for (var i = 0; i < rezepte.length; i++) {
         let html = templateElement.innerHTML;
-        html = html.replace("{HREF}", `#/Detail/${rezepte[i].idname}`);
+        html = html.replace("{HREF}", `#/Detail/${rezepte[i].name}`);
         // Auslesen der Firestorage URL des Bildes und setzten als scr Attribut
         let reftoPicture = await this.app.db.rezepteFirestorage.child(rezepte[i].img);
         await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
-        html = html.replace("{NAME}", rezepte[i].name);
+        html = html.replace("{NAME}", rezepte[i].showname);
         html = html.replace("{ZEIT}", rezepte[i].zubereitungszeit);
         let anzahlSterne = rezepte[i].aufwand;
         switch (anzahlSterne){
