@@ -28,8 +28,9 @@ class PageSubmit {
       pageDom.querySelector("#contactForm").addEventListener('submit', (e) => {
         e.preventDefault();
         this.writetoDB();
+
       });
-      //pageDom.querySelector("#submit-button").addEventListener("click", () => this.onSubmitButtonClicked());
+
 
       this.app.setPageTitle("Einreichen", {isSubPage: true});
       this.app.setPageCss(css);
@@ -43,8 +44,13 @@ class PageSubmit {
    writetoDB() {
     let file = document.querySelector('#image').files[0];
 
-    this.db.writeRezept("Müsli", "einfach machen", 5, 50, "Frühstück", ["Saab", "Volvo", "BMW"], file);
-    this.db.writeRezept("Hackbraten", "einfach machen", 5, 50, "Mittagessen", ["Saab", "Volvo", "BMW"], file);
+    var str1 = "Müsli";
+    var str2 = "Hackbraten";
+    var showname1 = str1.replace(/[^A-Za-z0-9\-_]/g, '-');
+    var showname2 = str2.replace(/[^A-Za-z0-9\-_]/g, '-');
+
+    this.db.writeRezept(showname1, str1, "einfach machen", 5, 50, "Frühstück", ["Saab", "Volvo", "BMW"], file);
+    this.db.writeRezept(showname2, str2, "einfach machen", 5, 50, "Mittagessen", ["Saab", "Volvo", "BMW"], file);
 
   }
 

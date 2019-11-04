@@ -26,6 +26,7 @@ class Database {
 
 /*
 Datenstruktur
+id: auto-generated
 name: String, ist eindeutige ID. Das heißt es kann z.B. nur ein Rezept mit dem Namen Hähnchen geben. (Zweites Hähnchen überschreibt erstes Hähnchen)
 zubereitung: String
 aufwand: Wertebereicht 1-5, gespeichert als int.
@@ -40,7 +41,7 @@ zutaten: Unterarray mit Strings
 */
 
 
-  async writeRezept(name, zubereitung, aufwand, zubereitungszeit, kategorie, zutaten, file) {
+  async writeRezept(idname, showname, zubereitung, aufwand, zubereitungszeit, kategorie, zutaten, file) {
     // Pfad für Bild aus Datum und Dateinamen konkatenieren
     let path = (+new Date()) + '-' + file.name;
     // Directory in Firestorage anlegen
@@ -49,8 +50,9 @@ zutaten: Unterarray mit Strings
     rezepteFirestoragedir.put(file).catch(console.error);
 
     // Upload der Informationen aus Einreichen Formular in Firebase Datenbank
-    this.rezepteCollection.doc(name).set({
-    name: name,
+    this.rezepteCollection.doc(idname).set({
+    name: idname,
+    showname: showname,
     zubereitung: zubereitung,
     aufwand: aufwand,
     zubereitungszeit: zubereitungszeit,
