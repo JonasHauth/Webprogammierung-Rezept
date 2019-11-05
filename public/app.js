@@ -67,16 +67,24 @@ class App {
       this.currentPageObject = new page.klass(this, this.db);
       this.currentPageObject.show(matches);
 
+      // Menü ausblenden auf neuer Seiten
       let menu = document.querySelector(".categories");
+      if (!menu) return;
       let icon = document.querySelector(".icon-menu");
+
       if (!icon)
         icon = document.querySelector(".icon-cancel");
 
-      if (!menu) return;
       if (!icon) return;
 
-      if (!menu.classList.contains("hidden")){
+      if (!menu.classList.contains("hidden")) {
           menu.classList.add("hidden");
+
+          let icon = document.querySelector(".icon-menu");
+          if (!icon)
+            icon = document.querySelector(".icon-cancel");
+          if (!icon) return;
+
           icon.classList.remove("icon-cancel");
           icon.classList.add("icon-menu");
       }
