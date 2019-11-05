@@ -160,14 +160,4 @@ class PageDetail {
         return pageDom;
     }
 
-    /*
-    tabListener() {
-        let menu = document.querySelector("header .nav-tabs");
-      if (menu.classList.contains("active")) {
-          menu.classList.remove("active");
-      } else {
-          menu.classList.add("active");
-      }
-    }
-    */
 }
