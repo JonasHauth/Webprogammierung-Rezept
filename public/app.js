@@ -19,7 +19,7 @@ class App {
 
   _toggleHamburgerMenu(event) {
       // Hamburger-Menu ein- oder ausblenden
-      let menu = document.querySelector(".categories");
+      let menu = document.querySelector(".categorie");
       let icon = document.querySelector(".icon-menu");
       if (!icon)
         icon = document.querySelector(".icon-cancel");
@@ -66,20 +66,6 @@ class App {
 
       this.currentPageObject = new page.klass(this, this.db);
       this.currentPageObject.show(matches);
-
-      let menu = document.querySelector(".categories");
-      let icon = document.querySelector(".icon-menu");
-      if (!icon)
-        icon = document.querySelector(".icon-cancel");
-
-      if (!menu) return;
-      if (!icon) return;
-
-      if (!menu.classList.contains("hidden")){
-          menu.classList.add("hidden");
-          icon.classList.remove("icon-cancel");
-          icon.classList.add("icon-menu");
-      }
   }
 
   //Hilfsmethode für das Setzen des Website Titels.
