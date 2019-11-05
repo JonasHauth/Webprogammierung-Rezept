@@ -5,18 +5,16 @@
 
       <div class="container padding-1">
                <ul class="tab-items">
-                   <!-- Lasche 1: Über den Haushund -->
-                   <li class="tab-item active" data-tab-content="#tabpage-1">
+
+                   <li class="tab-item active" data-tab-content="#overview-tab">
                        Übersicht
                        <div class="tab-indicator"></div>
                    </li>
-                   <!-- Lasche 2: Hunderassen -->
-                   <li class="tab-item" data-tab-content="#tabpage-2">
+                   <li class="tab-item" data-tab-content="#zutaten-tab">
                        Zutaten
                        <div class="tab-indicator"></div>
                    </li>
-                   <!-- Lasche 3: Ernährung -->
-                   <li class="tab-item" data-tab-content="#tabpage-3">
+                   <li class="tab-item" data-tab-content="#zubereitung-tab">
                        Zubereitung
                        <div class="tab-indicator"></div>
                    </li>
@@ -25,7 +23,7 @@
 </header>
 <main>
 
-<div id="tabpage-1" class="tab-page">
+<div id="overview-tab" class="tab-page">
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -50,19 +48,17 @@
   </div>
 </div>
 </div>
-<div id="tabpage-2" class="tab-page">
-    <h2>Einige Hunderassen</h2>
+<div id="zutaten-tab" class="tab-page">
+    <h2>Zutaten</h2>
     <p>
-        Zu den kleinsten anerkannten Hunderassen gehört …
+        {ZUTATEN}
     </p>
 </div>
-<div id="tabpage-3" class="tab-page">
-    <h2>Die richtige Ernährung ist wichtig</h2>
+<div id="zubereitung-tab" class="tab-page">
+    <h2>Zubereitung</h2>
     <p>
-        Hunde sind, wie Wölfe, in der Lage, …
+        {ZUBEREITUNG}
     </p>
-    <a class="button" href="#">
-        Jetzt Hundefutter kaufen
-    </a>
+
 </div>
 </main>

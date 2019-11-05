@@ -1,11 +1,6 @@
 "use strict";
 
 class PageDetail {
-    /**
-     * Konstruktor
-     * @param {App} app Zentrale Instanz der App-Klasse
-     */
-
 
     constructor(app, rezept) {
         this.app = app;
@@ -13,9 +8,8 @@ class PageDetail {
         this.recordId = -1;
 
     }
-    /**
-     * Seite anzeigen. Wird von der App-Klasse aufgerufen.
-     */
+
+     // Seite anzeigen. Wird von der App-Klasse aufgerufen.
     async show(matches) {
         // URL-Parameter auswerten
         this.recordId = matches[1];
@@ -62,7 +56,7 @@ class PageDetail {
                     tabContent.classList.remove("tab-page");
                 }
             }
-            
+
             // Alle Tablaschen in der Seite suchen
             let tabItems = document.querySelectorAll(".tab-item");
 
@@ -70,6 +64,8 @@ class PageDetail {
             tabItems.forEach(tabItem => {
                 // Bist du eine aktive Tablasche? Dann Inhalt anzeigen.
                 if (tabItem.classList.contains("active")) {
+                  if(tabContent == "overview-tab") {
+                  }
                     switchTabPage(tabItem);
                 }
 
@@ -82,10 +78,14 @@ class PageDetail {
 
         try {
         // Seite zur Anzeige bringen
-        let pageDom = await this._renderFoodTiles(html);
+        let pageDom = await this._renderFoodTilesOverview(html);
 
         this.app.setPageTitle(`Rezept: ${this.rezept.showname}`, {isSubPage: true});
         this.app.setPageCss(css);
+        let headerShow = document.querySelector(".content");
+        if(headerShow.classList.contains("hidden")){
+          headerShow.classList.remove("hidden");
+        }
         this.app.setPageHeader(pageDom.querySelector("header"));
         this.app.setPageContent(pageDom.querySelector("main"));
       } catch(err){
@@ -93,13 +93,8 @@ class PageDetail {
       }
     }
 
-     /**
-     * Hilfsmethode, welche den HTML-Code der eingelesenen HTML-Datei bearbeitet
-     * und anhand der eingelesenen Daten ergänzt.
-     */
-
-
-    async _renderFoodTiles(html) {
+     //Overview-Daten holen
+    async _renderFoodTilesOverview(html) {
 
         // Platzhalter mit den eingelesenen Daten ersetzen
         let reftoPicture = await this.app.db.rezepteFirestorage.child(this.rezept.img);
@@ -153,6 +148,32 @@ class PageDetail {
             html = html.replace("{Stern5}", "icon-star");
             break;
         }
+
+        let pageDom = document.createElement("div");
+        pageDom.innerHTML = html;
+
+        return pageDom;
+    }
+
+    //ZutatenTab-Daten holen
+    async _renderFoodTilesZutaten(html) {
+
+        // Platzhalter mit den eingelesenen Daten ersetzen, DataBase dazu noch nicht vollständig
+        //evtl. durch Array, das mit Zutaten befüllt wird
+        html = html.replace(/{ZUTATEN}/g, this.rezept.zutaten);
+
+        let pageDom = document.createElement("div");
+        pageDom.innerHTML = html;
+
+        return pageDom;
+    }
+
+    //ZutatenTab-Daten holen
+    async _renderFoodTilesZubereitung(html) {
+
+        // Platzhalter mit den eingelesenen Daten ersetzen, DataBase dazu noch nicht vollständig
+        //evtl. durch Array, das mit Zutaten befüllt wird
+        html = html.replace(/{ZUBEREITUNG}/g, this.rezept.zubereitung);
 
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
