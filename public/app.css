@@ -167,7 +167,7 @@ html {
 
      header nav .logo {
          display: inline-block !important;
-         padding-right: var(--content-padding);
+         
          height:3rem;
          width: auto;
 }
