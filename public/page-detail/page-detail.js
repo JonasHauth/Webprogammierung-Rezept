@@ -62,7 +62,7 @@ class PageDetail {
                     tabContent.classList.remove("tab-page");
                 }
             }
-
+            
             // Alle Tablaschen in der Seite suchen
             let tabItems = document.querySelectorAll(".tab-item");
 
