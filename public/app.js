@@ -19,13 +19,13 @@ class App {
 
   _toggleHamburgerMenu(event) {
       // Hamburger-Menu ein- oder ausblenden
-      let menu = document.querySelector("header nav .menu-right");
+      let menu = document.querySelector(".categories");
       if (!menu) return;
 
-      if (menu.classList.contains("small-screen-hidden")) {
-          menu.classList.remove("small-screen-hidden");
+      if (menu.classList.contains("hidden")) {
+          menu.classList.remove("hidden");
       } else {
-          menu.classList.add("small-screen-hidden");
+          menu.classList.add("hidden");
       }
 
       // Weitere Behandlung des Click-Events unterbinden, da wir hier keine
