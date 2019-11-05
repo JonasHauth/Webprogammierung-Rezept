@@ -5,33 +5,32 @@
 <main>
 <div class="container" id="submit">
   <div class="contact">
-    <form id="contactForm">
+    <form id="contactForm" class="contact">
       <p>
         <label>Name des Gerichts</label>
-        <input type="text" name="name">
+        <input type="text" name="name" required>
       </p>
       <p>
         <label>Beschreibe die Zubereitung</label>
-        <textarea name="zubereitung" rows="5"></textarea>
+        <textarea name="zubereitung" rows="5" required></textarea>
       </p>
       <div>
-        <div id="zutaten">
-        </div>
         <label>Zutaten</label>
+        <div id="zutaten"></div>
         <button id="addzutat" type="button">Zutat hinzufügen</button>
         <button id="removezutat" type="button">Zutat entfernen</button>
       </div>
       <p>
         <label>Aufwand</label>
-        <INPUT TYPE="radio" NAME="auf" VALUE="1" CHECKED onClick=0>1</input>
-        <INPUT TYPE="radio" NAME="auf" VALUE="2" onClick=0>2</input>
-        <INPUT TYPE="radio" NAME="auf" VALUE="3" onClick=0>3</input>
-        <INPUT TYPE="radio" NAME="auf" VALUE="4" onClick=0>4</input>
-        <INPUT TYPE="radio" NAME="auf" VALUE="5" onClick=0>5</input>
+        <input TYPE="radio" NAME="auf" VALUE=1 CHECKED onClick=0>1</input>
+        <input TYPE="radio" NAME="auf" VALUE=2 onClick=0>2</input>
+        <input TYPE="radio" NAME="auf" VALUE=3 onClick=0>3</input>
+        <input TYPE="radio" NAME="auf" VALUE=4 onClick=0>4</input>
+        <input TYPE="radio" NAME="auf" VALUE=5 onClick=0>5</input>
       </p>
       <p>
         <label>Zubereitungszeit</label>
-        <input type="number" name="zubereitungszeit">
+        <input type="number" name="zubereitungszeit" required>
       </p>
       <p>
         <label>Kategorie</label>
@@ -49,6 +48,5 @@
       </p>
       </form>
     </div>
-    <img id="previewPicture" src="" alt="">
   </div>
 </main>
