@@ -12,7 +12,7 @@ class PageSubmit {
   async show() {
       // Anzuzeigenden Seiteninhalt nachladen
       let html = await fetch("page-submit/page-submit.html");
-      let css = await fetch("page-submit/page-submit.css");
+      let css = await fetch("bootstrap/css/bootstrap.css");
 
       if (html.ok && css.ok) {
           html = await html.text();
