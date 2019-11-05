@@ -57,6 +57,7 @@ html {
 
  header nav {
      padding: var(--content-padding);
+     padding-bottom: 3px;
      color: var(--text-color);
  }
  header nav i {
@@ -64,7 +65,7 @@ html {
  }
  header nav .page-name {
      font-weight: bold;
-     font-size: 75px;
+     font-size: 40px;
  }
 
  header nav .logo {
@@ -163,11 +164,18 @@ html {
      #small-screen-only {
          display: none !important;
      }
-
-     .logo {
+     header nav {
+       text
+     }
+     header nav .logo {
          display: inline-block !important;
          padding-right: var(--content-padding);
-     }
+         height:3rem;
+         width: auto;
+}
+
+
+
      header nav,
      header nav .menu-right {
          display: flex;
