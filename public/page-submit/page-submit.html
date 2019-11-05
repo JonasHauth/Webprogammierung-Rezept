@@ -8,23 +8,34 @@
     <form id="contactForm">
       <p>
         <label>Name des Gerichts</label>
-        <input type="text" name="titel">
+        <input type="text" name="name">
       </p>
       <p>
         <label>Beschreibe die Zubereitung</label>
-        <input type="text" name="zubereitung">
+        <textarea name="zubereitung" rows="5"></textarea>
       </p>
-      <p>
+      <div id="zutaten">
         <label>Zutaten</label>
-        <textarea name="zutaten" rows="5"></textarea>
-      </p>
+        <button id="addzutat" type="button" name="addzutat">Füge eine Zutat hinzu</button>
+      </div>
       <p>
         <label>Aufwand</label>
-        <input type="number" name="aufwand">
+        <INPUT TYPE="radio" NAME="auf" VALUE="1" CHECKED onClick=0>1</input>
+        <INPUT TYPE="radio" NAME="auf" VALUE="2" onClick=0>2</input>
+        <INPUT TYPE="radio" NAME="auf" VALUE="3" onClick=0>3</input>
+        <INPUT TYPE="radio" NAME="auf" VALUE="4" onClick=0>4</input>
+        <INPUT TYPE="radio" NAME="auf" VALUE="5" onClick=0>5</input>
       </p>
       <p>
         <label>Zubereitungszeit</label>
-        <input type="number" name="zubereitung">
+        <input type="number" name="zubereitungszeit">
+      </p>
+      <p>
+        <label>Kategorie</label>
+        <select type="text" name="kategorie">
+          <option value="Frühstück">Frühstück</option>
+          <option value="Mittagessen">Mittagessen</option>
+        </select>
       </p>
       <p>
         <label>Wählen Sie eine Bilddatei von Ihrem Rechner aus.</label>
