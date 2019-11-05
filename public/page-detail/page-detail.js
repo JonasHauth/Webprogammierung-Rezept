@@ -33,53 +33,26 @@ class PageDetail {
             return;
         }
 
-        window.addEventListener("load", () => {
-            // Funktion zum Umschalten der Tabreiter
-            let switchTabPage = (clickedTabItem) => {
-                // Erst mal alle Tabseiten ausblenden
-                clickedTabItem.parentNode.childNodes.forEach(tabItem => {
-                    if (tabItem.nodeType != Node.ELEMENT_NODE) return;
+        let pageDom = await this._renderFoodTilesOverview(html);
 
-                    tabItem.classList.remove("active");
-                    let tabContent = document.querySelector(tabItem.dataset.tabContent);
+        // Eventhandler zum Umschalten der Tabreiter registrieren
+        let tabItems = pageDom.querySelectorAll(".tab-item");
 
-                    if (tabContent != null) {
-                        tabContent.classList.add("tab-page");
-                    }
-                });
-
-                // Dann die ausgewählte Tabseite anzeigen
-                clickedTabItem.classList.add("active");
-                let tabContent = document.querySelector(clickedTabItem.dataset.tabContent);
-
-                if (tabContent != null) {
-                    tabContent.classList.remove("tab-page");
-                }
+        // Event Handler registrieren und erste Tabseite anzeigen
+        tabItems.forEach(tabItem => {
+            // Bist du eine aktive Tablasche? Dann Inhalt anzeigen.
+            if (tabItem.classList.contains("active")) {
+                this._switchTabPage(tabItem);
             }
 
-            // Alle Tablaschen in der Seite suchen
-            let tabItems = document.querySelectorAll(".tab-item");
-
-            // Event Handler registrieren und erste Tabseite anzeigen
-            tabItems.forEach(tabItem => {
-                // Bist du eine aktive Tablasche? Dann Inhalt anzeigen.
-                if (tabItem.classList.contains("active")) {
-                  if(tabContent == "overview-tab") {
-                  }
-                    switchTabPage(tabItem);
-                }
-
-                // Aktive Seite bei Klick auf die Lasche wechseln
-                tabItem.addEventListener("click", event => {
-                    switchTabPage(event.target);
-                });
+            // Aktive Seite bei Klick auf die Lasche wechseln
+            tabItem.addEventListener("click", event => {
+                this._switchTabPage(event.target);
             });
         });
 
         try {
         // Seite zur Anzeige bringen
-        let pageDom = await this._renderFoodTilesOverview(html);
-
         this.app.setPageTitle(`Rezept: ${this.rezept.showname}`, {isSubPage: true});
         this.app.setPageCss(css);
         let headerShow = document.querySelector(".content");
@@ -91,6 +64,28 @@ class PageDetail {
       } catch(err){
         console.error(err);
       }
+    }
+
+    _switchTabPage(clickedTabItem) {
+        // Erst mal alle Tabseiten ausblenden
+        clickedTabItem.parentNode.childNodes.forEach(tabItem => {
+            if (tabItem.nodeType != Node.ELEMENT_NODE) return;
+
+            tabItem.classList.remove("active");
+            let tabContent = document.querySelector(tabItem.dataset.tabContent);
+
+            if (tabContent != null) {
+                tabContent.classList.add("tab-page");
+            }
+        });
+
+        // Dann die ausgewählte Tabseite anzeigen
+        clickedTabItem.classList.add("active");
+        let tabContent = document.querySelector(clickedTabItem.dataset.tabContent);
+
+        if (tabContent != null) {
+            tabContent.classList.remove("tab-page");
+        }
     }
 
      //Overview-Daten holen
