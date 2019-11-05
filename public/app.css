@@ -152,16 +152,18 @@ html {
      font-size: 110%;
  }
 
-/* Menü bei kleinen Bildschirmen ausblenden */
  @media (max-width: 40em) {
-    #small-screen-hidden {
-        display: none;
-    }
-}
+     #small-screen-hidden {
+         display: none;
+     }
+ }
 
-/* Anpassung an große Bildschirme */
  @media (min-width: 40em) {
    /*Großer Bildschirm mit logo, ohne Text bei den Icons*/
+     #small-screen-only {
+         display: none !important;
+     }
+
      .logo {
          display: inline-block !important;
          padding-right: var(--content-padding);
