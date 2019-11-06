@@ -33,7 +33,7 @@ class PageDetail {
             return;
         }
 
-        let pageDom = await this._renderFoodTilesOverview(html);
+        let pageDom = await this._renderFoodTiles(html);
 
         // Eventhandler zum Umschalten der Tabreiter registrieren
         let tabItems = pageDom.querySelectorAll(".tab-item");
@@ -53,7 +53,7 @@ class PageDetail {
 
         try {
         // Seite zur Anzeige bringen
-        this.app.setPageTitle(`Rezept: ${this.rezept.showname}`, {isSubPage: true});
+        this.app.setPageTitle(`${this.rezept.showname}`, {isSubPage: true});
         this.app.setPageCss(css);
         this.app.setPageContent(pageDom.querySelector("main"));
       } catch(err){
@@ -84,13 +84,15 @@ class PageDetail {
     }
 
      //Overview-Daten holen
-    async _renderFoodTilesOverview(html) {
+    async _renderFoodTiles(html) {
 
         // Platzhalter mit den eingelesenen Daten ersetzen
         let reftoPicture = await this.app.db.rezepteFirestorage.child(this.rezept.img);
         await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
         html = html.replace(/{NAME}/g, this.rezept.showname);
         html = html.replace(/{ZEIT}/g, this.rezept.zubereitungszeit);
+        html = html.replace(/{ZUTATEN}/g, this.rezept.zutaten);
+        html = html.replace(/{ZUBEREITUNG}/g, this.rezept.zubereitung);
 
 
         let anzahlSterne = this.rezept.aufwand;
@@ -144,31 +146,4 @@ class PageDetail {
 
         return pageDom;
     }
-
-    //ZutatenTab-Daten holen
-    async _renderFoodTilesZutaten(html) {
-
-        // Platzhalter mit den eingelesenen Daten ersetzen, DataBase dazu noch nicht vollständig
-        //evtl. durch Array, das mit Zutaten befüllt wird
-        html = html.replace(/{ZUTATEN}/g, this.rezept.zutaten);
-
-        let pageDom = document.createElement("div");
-        pageDom.innerHTML = html;
-
-        return pageDom;
-    }
-
-    //ZutatenTab-Daten holen
-    async _renderFoodTilesZubereitung(html) {
-
-        // Platzhalter mit den eingelesenen Daten ersetzen, DataBase dazu noch nicht vollständig
-        //evtl. durch Array, das mit Zutaten befüllt wird
-        html = html.replace(/{ZUBEREITUNG}/g, this.rezept.zubereitung);
-
-        let pageDom = document.createElement("div");
-        pageDom.innerHTML = html;
-
-        return pageDom;
-    }
-
 }
