@@ -21,7 +21,7 @@ class PageNotFound {
     async show() {
         // Anzuzeigenden Seiteninhalt nachladen
         let html = await fetch("page-not-found/page-not-found.html");
-        let css = await fetch("page-not-found/page-not-found.css");
+        let css = await fetch("bootstrap/css/bootstrap.css");
 
         if (html.ok && css.ok) {
             html = await html.text();
@@ -35,9 +35,8 @@ class PageNotFound {
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
 
-        this._app.setPageTitle("Seite nicht gefunden", {isSubPage: true});
-        this._app.setPageCss(css);
-        this._app.setPageHeader(pageDom.querySelector("header"));
-        this._app.setPageContent(pageDom.querySelector("main"));
+        this.app.setPageTitle("Seite nicht gefunden", {isSubPage: true});
+        this.app.setPageCss(css);
+        this.app.setPageContent(pageDom.querySelector("main"));
     }
 }
