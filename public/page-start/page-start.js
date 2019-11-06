@@ -29,11 +29,6 @@ class PageStart {
 
       this.app.setPageTitle("Startseite");
       this.app.setPageCss(css);
-      let headerShow = document.querySelector(".content");
-      if(!headerShow.classList.contains("hidden")){
-        headerShow.classList.add("hidden");
-      }
-      this.app.setPageHeader(pageDom.querySelector("header"));
       this.app.setPageContent(pageDom.querySelector("main"));
   }
 

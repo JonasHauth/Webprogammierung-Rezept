@@ -55,11 +55,6 @@ class PageDetail {
         // Seite zur Anzeige bringen
         this.app.setPageTitle(`Rezept: ${this.rezept.showname}`, {isSubPage: true});
         this.app.setPageCss(css);
-        let headerShow = document.querySelector(".content");
-        if(headerShow.classList.contains("hidden")){
-          headerShow.classList.remove("hidden");
-        }
-        this.app.setPageHeader(pageDom.querySelector("header"));
         this.app.setPageContent(pageDom.querySelector("main"));
       } catch(err){
         console.error(err);

@@ -21,7 +21,12 @@ html {
     background-attachment: fixed;
     background-position: center;
 
-    --content-padding: 1rem;
+    /* --content-padding: 1rem; */
+}
+
+/* aus html auslagern, damit kleines Menü über volle Bildschirmbreite angezeigt wird */
+.logo, .menu-left, .content, .container-fluid {
+        --content-padding: 1rem;
 }
 
 @media (min-width: 40em) {
@@ -167,7 +172,7 @@ html {
 
      header nav .logo {
          display: inline-block !important;
-         
+
          height:3rem;
          width: auto;
 }

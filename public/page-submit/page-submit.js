@@ -94,7 +94,6 @@ class PageSubmit {
 
       this.app.setPageTitle("Einreichen", {isSubPage: true});
       this.app.setPageCss(css);
-      this.app.setPageHeader(pageDom.querySelector("header"));
       this.app.setPageContent(pageDom.querySelector("main"));
   };
 
