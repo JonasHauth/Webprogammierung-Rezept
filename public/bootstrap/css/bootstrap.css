@@ -19,6 +19,11 @@
      border-style: solid;
  }
 
+ .container {
+     margin-top: 10px;
+     margin-bottom: 20px;
+ }
+
  /* Submit-Seite CSS-Ergänzung */
 #submit {
   box-sizing: border-box;

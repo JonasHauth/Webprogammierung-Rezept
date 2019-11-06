@@ -163,13 +163,13 @@ html {
      font-size: 110%;
  }
 
- @media (max-width: 40em) {
+ @media (max-width: 70em) {
      #small-screen-hidden {
          display: none;
      }
  }
 
- @media (min-width: 40em) {
+ @media (min-width: 70em) {
    /*Großer Bildschirm mit logo, ohne Text bei den Icons*/
      #small-screen-only {
          display: none !important;
@@ -206,7 +206,6 @@ html {
 */
 .categories {
     min-width:370px;
-    max-width:370px;
 }
 
 .categories h2{
