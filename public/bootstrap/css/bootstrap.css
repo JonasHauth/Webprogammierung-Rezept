@@ -7,8 +7,8 @@
 
  /* Startseite CSS-Ergänzung */
  .col-md-6 img {
-     width: 20em;
-     height: 20em;
+     width: 10em;
+     height: 10em;
      max-width: 100%;
      object-fit: cover;
      display: block;
@@ -275,8 +275,7 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #708090;
 }
 
 a:not([href]):not([tabindex]) {
@@ -665,8 +664,8 @@ pre code {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 @media (min-width: 576px) {
