@@ -22,8 +22,9 @@
       <script src="page-detail/page-detail.js"></script>
       <script src="page-not-found/page-not-found.js"></script>
       <script src="page-submit/page-submit.js"></script>
-      <script src="page-submit/page-breakfast.js"></script>
-      <script src="page-submit/page-lunch.js"></script>
+      <script src="page-appetizer/page-appetizer.js"></script>
+      <script src="page-main-dish/page-main-dish.js"></script>
+      <script src="page-dessert/page-dessert.js"></script>
 
       <!-- Anwendung starten -->
       <script>
@@ -37,6 +38,15 @@
               },{
                   url: "^/submit",
                   klass: PageSubmit,
+              },{
+                  url: "^/appetizer",
+                  klass: PageAppetizer,
+              },{
+                  url: "^/main_dish",
+                  klass: PageMainDish,
+              },{
+                  url: "^/dessert",
+                  klass: PageDessert,
               },{
                   url: ".*",
                   klass: PageNotFound,
@@ -86,8 +96,9 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategorie</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="kategorie-auswahl">
-                      <li><a class="dropdown-item" href="#breakfast">Frühstück</a></li>
-                      <li><a class="dropdown-item" href="#lunch">Mittagessen</a></li>
+                      <li><a class="dropdown-item" href="#/appetizer">Vorspeise</a></li>
+                      <li><a class="dropdown-item" href="#/main_dish">Hauptspeise</a></li>
+                      <li><a class="dropdown-item" href="#/dessert">Nachspeise</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -113,8 +124,9 @@
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategorie</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="kategorie-auswahl">
-                          <li><a class="dropdown-item" href="#/breakfast">Frühstück</a></li>
-                          <li><a class="dropdown-item" href="#/lunch">Mittagessen</a></li>
+                            <li><a class="dropdown-item" href="#/appetizer">Vorspeise</a></li>
+                            <li><a class="dropdown-item" href="#/main_dish">Hauptspeise</a></li>
+                            <li><a class="dropdown-item" href="#/dessert">Nachspeise</a></li>
                         </ul>
                       </li>
                     </ul>

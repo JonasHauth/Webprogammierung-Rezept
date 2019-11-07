@@ -1,6 +1,6 @@
 "use strict";
 
-class PageStart {
+class PageDessert {
 
   constructor(app, db) {
       this.app = app;
@@ -10,7 +10,7 @@ class PageStart {
 
   async show() {
       // Anzuzeigenden Seiteninhalt nachladen
-      let html = await fetch("page-start/page-start.html");
+      let html = await fetch("page-dessert/page-dessert.html");
       let css = await fetch("bootstrap/css/bootstrap.css");
 
       if (html.ok && css.ok) {
@@ -20,34 +20,48 @@ class PageStart {
           console.error("Fehler beim Laden des HTML/CSS-Inhalts");
           return;
       }
-      this.app.setPageTitle("Startseite");
-      this.app.setPageCss(css);
 
       // Seite zur Anzeige bringen
       let pageDom = document.createElement("div");
       pageDom.innerHTML = html;
 
-      await this._renderFoodTiles(pageDom);
+      await this._renderDessertTiles(pageDom);
 
+      this.app.setPageTitle("Kategorie: Nachspeise", {isSubPage: true});
+      this.app.setPageCss(css);
       this.app.setPageContent(pageDom.querySelector("main"));
   }
 
 
-  async _renderFoodTiles(pageDom) {
-      let mainElement = pageDom.querySelector("main");
-      let templateElement = pageDom.querySelector("#template-tile");
+  async _renderDessertTiles(pageDom) {
+      var mainElement = pageDom.querySelector("main");
       // Speichert einen Array mit allen in der Datenbank hinterlegten Rezepten in der Variable Rezepte
-      let rezepte = await this.app.db.getAllRezepte();
+      var rezepte = await this.app.db.getAllRezepte();
+      var rezepteNachspeise = [];
 
+      var f = 0;
       for (var i = 0; i < rezepte.length; i++) {
+        if (rezepte[i].kategorie == "Nachspeise") {
+                rezepteNachspeise[f] = rezepte[i];
+                f++;
+        }
+      }
+
+      // Vorspeise-Elemente holen
+      var kategorie = pageDom.querySelector("#kategorie");
+      let html = kategorie.innerHTML;
+      html = html.replace("{Kategorie}", "Nachspeise");
+      mainElement.innerHTML += html;
+      var templateElement = pageDom.querySelector("#template-tile");
+      for (var i = 0; i < rezepteNachspeise.length; i++) {
           let html = templateElement.innerHTML;
-          html = html.replace("{HREF}", `#/Detail/${rezepte[i].name}`);
+          html = html.replace("{HREF}", `#/Detail/${rezepteNachspeise[i].name}`);
           // Auslesen der Firestorage URL des Bildes und setzten als scr Attribut
-          let reftoPicture = await this.app.db.rezepteFirestorage.child(rezepte[i].img);
+          let reftoPicture = await this.app.db.rezepteFirestorage.child(rezepteNachspeise[i].img);
           await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
-          html = html.replace("{NAME}", rezepte[i].showname);
-          html = html.replace("{ZEIT}", rezepte[i].zubereitungszeit);
-          let anzahlSterne = rezepte[i].aufwand;
+          html = html.replace("{NAME}", rezepteNachspeise[i].showname);
+          html = html.replace("{ZEIT}", rezepteNachspeise[i].zubereitungszeit);
+          let anzahlSterne = rezepteNachspeise[i].aufwand;
           switch (anzahlSterne) {
               case 5:
               html = html.replace("{Stern1}", "icon-star-filled");
@@ -94,32 +108,32 @@ class PageStart {
           }
         mainElement.innerHTML += html;
         i++;
-        if (rezepte[i] != null){
-            let vorhandenesObjekt = pageDom.querySelector("main");
+        if (rezepteNachspeise[i] != null){
+            var vorhandenesObjekt = pageDom.querySelector("main");
             vorhandenesObjekt = vorhandenesObjekt.lastElementChild.lastElementChild;
 
-            let einzufuegendesObjekt1 = document.createElement("div");
+            var einzufuegendesObjekt1 = document.createElement("div");
             einzufuegendesObjekt1.className = "col-md-6";
 
-            let einzufuegendesObjekt2 = document.createElement("a");
-            einzufuegendesObjekt2.href = `#/Detail/${rezepte[i].name}`;
+            var einzufuegendesObjekt2 = document.createElement("a");
+            einzufuegendesObjekt2.href = `#/Detail/${rezepteNachspeise[i].name}`;
 
             var einzufuegendesObjekt3 = document.createElement("img");
-            let reftoPicture = await this.app.db.rezepteFirestorage.child(rezepte[i].img);
+            let reftoPicture = await this.app.db.rezepteFirestorage.child(rezepteNachspeise[i].img);
             let url = await reftoPicture.getDownloadURL()
             einzufuegendesObjekt3.src = url;
             einzufuegendesObjekt3.alt = "";
 
             var einzufuegendesObjekt4 = document.createElement("div");
-            einzufuegendesObjekt4.innerHTML = rezepte[i].showname;
+            einzufuegendesObjekt4.innerHTML = rezepteNachspeise[i].showname;
 
             var einzufuegendesObjekt5 = document.createElement("div");
-            einzufuegendesObjekt5.innerHTML = `Zubereitungszeit: ${rezepte[i].zubereitungszeit} Minuten`;
+            einzufuegendesObjekt5.innerHTML = `Zubereitungszeit: ${rezepteNachspeise[i].zubereitungszeit} Minuten`;
 
             var einzufuegendesObjekt6 = document.createElement("div");
             einzufuegendesObjekt6.innerHTML = "Aufwand";
 
-            let anzahlSterne = rezepte[i].aufwand;
+            let anzahlSterne = rezepteNachspeise[i].aufwand;
             switch (anzahlSterne){
                 case 5:
                 var einzufuegendesObjekt7 = document.createElement("i");
@@ -222,4 +236,4 @@ class PageStart {
 
   } // Ende _renderFoodTiles
 
-} // Ende Klasse PageStart
+} // Ende Klasse PageBreakfast
