@@ -3,16 +3,16 @@
 </header>
 
 <main>
-<div class="container" id="submit">
   <div class="contact">
+    <div class="alert">Dein Rezepte wurde eingereicht</div>
     <form id="contactForm" class="contact">
       <p>
         <label>Name des Gerichts</label>
-        <input type="text" name="name" required>
+        <input class="wideinput" type="text" name="name" required>
       </p>
       <p>
         <label>Beschreibe die Zubereitung</label>
-        <textarea name="zubereitung" rows="5" required></textarea>
+        <textarea class="wideinput" name="zubereitung" rows="5" required></textarea>
       </p>
       <div>
         <label>Zutaten</label>
@@ -22,25 +22,25 @@
       </div>
       <p>
         <label>Aufwand</label>
-        <input TYPE="radio" NAME="auf" VALUE=1 CHECKED onClick=0>1</input>
-        <input TYPE="radio" NAME="auf" VALUE=2 onClick=0>2</input>
-        <input TYPE="radio" NAME="auf" VALUE=3 onClick=0>3</input>
-        <input TYPE="radio" NAME="auf" VALUE=4 onClick=0>4</input>
-        <input TYPE="radio" NAME="auf" VALUE=5 onClick=0>5</input>
+        <input id="radio" TYPE="radio" NAME="auf" VALUE=1 CHECKED onClick=0>1</input>
+        <input id="radio" TYPE="radio" NAME="auf" VALUE=2 onClick=0>2</input>
+        <input id="radio" TYPE="radio" NAME="auf" VALUE=3 onClick=0>3</input>
+        <input id="radio" TYPE="radio" NAME="auf" VALUE=4 onClick=0>4</input>
+        <input id="radio" TYPE="radio" NAME="auf" VALUE=5 onClick=0>5</input>
       </p>
       <p>
         <label>Zubereitungszeit</label>
-        <input type="number" name="zubereitungszeit" required>
+        <input class="wideinput" type="number" name="zubereitungszeit" required>
       </p>
       <p>
         <label>Kategorie</label>
-        <select type="text" name="kategorie">
+        <select class="wideinput" type="text" name="kategorie">
           <option value="Frühstück">Frühstück</option>
           <option value="Mittagessen">Mittagessen</option>
         </select>
       </p>
       <p>
-        <label>Wählen Sie eine Bilddatei von Ihrem Rechner aus.</label>
+        <label>Wählen Sie eine lokale Bilddatei.</label>
         <input name="datei" type="file" accept="image/*" id="image" method=POST enctype=multipart/form-data>
       </p>
       <p>
@@ -48,5 +48,4 @@
       </p>
       </form>
     </div>
-  </div>
 </main>

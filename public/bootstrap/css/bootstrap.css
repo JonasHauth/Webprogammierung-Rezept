@@ -24,34 +24,83 @@
      margin-bottom: 20px;
  }
 
- /* Submit-Seite CSS-Ergänzung */
-#submit {
-  box-sizing: border-box;
-  max-width:1170px;
-  margin-left: auto;
-  margin-right: auto;
-  padding:1em;
-}
-#submit > *{
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-/*Farbe anpassen*/
-#submit {
-  background:#ffffff;
+/* Form */
+.contact{
+  margin: 0;
 }
 
-/* Form */
 .contact form p{
     display:block;
     margin:0;
 }
 .contact form label{
   display: block;
+  font-weight: bold;
 }
-.contact form input, textarea, button{
+.contact form input, textarea, select{
   width: 100%;
 }
+
+#radio {
+  width: 10%;
+  font-weight: normal;
+}
+
+#submit-button {
+  margin-top: 1em;
+  width: 100%;
+}
+input[type=text], input[type=number] {
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 4px;
+}
+input[type=text]:focus, input[type=number]:focus {
+  border-bottom: 2px solid red;
+}
+.contact select {
+  border-radius: 4px;
+  border: none;
+  border-bottom: 2px solid black;
+}
+.contact textarea {
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 4px;
+}
+.contact textarea:focus {
+  border-bottom: 2px solid red;
+}
+.contact button {
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 4px;
+  color: black;
+}
+.alert {
+  text-align: center;
+  padding:10px;
+  background:#79c879;
+  color:#fff;
+  margin-bottom:10px;
+  display: none;
+}
+
+.contact form #zutaten input[type=number], .contact form #zutaten select {
+  width: 20%;
+  height: 30px;
+  margin-right: 1%;
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+.contact form #zutaten input[type=text] {
+  width: 58%;
+  height: 30px;
+  vertical-align: top;
+}
+
+
+
 
 /* Ergänzungen Menü */
 

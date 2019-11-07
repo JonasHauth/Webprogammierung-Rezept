@@ -39,17 +39,17 @@ class PageDetail {
         let tabItems = pageDom.querySelectorAll(".tab-item");
 
         // Event Handler registrieren und erste Tabseite anzeigen
-        tabItems.forEach(tabItem => {
-            // Bist du eine aktive Tablasche? Dann Inhalt anzeigen.
-            if (tabItem.classList.contains("active")) {
-                this._switchTabPage(tabItem);
-            }
+                tabItems.forEach(tabItem => {
+                    // Bist du eine aktive Tablasche? Dann Inhalt anzeigen.
+                    if (tabItem.classList.contains("active")) {
+                        this._switchTabPage(tabItem, pageDom);
+                    }
 
-            // Aktive Seite bei Klick auf die Lasche wechseln
-            tabItem.addEventListener("click", event => {
-                this._switchTabPage(event.target);
-            });
-        });
+                    // Aktive Seite bei Klick auf die Lasche wechseln
+                    tabItem.addEventListener("click", event => {
+                        this._switchTabPage(event.target, document);
+                    });
+                });
 
         try {
         // Seite zur Anzeige bringen
@@ -61,27 +61,27 @@ class PageDetail {
       }
     }
 
-    _switchTabPage(clickedTabItem) {
-        // Erst mal alle Tabseiten ausblenden
-        clickedTabItem.parentNode.childNodes.forEach(tabItem => {
-            if (tabItem.nodeType != Node.ELEMENT_NODE) return;
+    _switchTabPage(clickedTabItem, pageDom) {
+          // Erst mal alle Tabseiten ausblenden
+          clickedTabItem.parentNode.childNodes.forEach(tabItem => {
+              if (tabItem.nodeType != Node.ELEMENT_NODE) return;
 
-            tabItem.classList.remove("active");
-            let tabContent = document.querySelector(tabItem.dataset.tabContent);
+              tabItem.classList.remove("active");
+              let tabContent = pageDom.querySelector(tabItem.dataset.tabContent);
 
-            if (tabContent != null) {
-                tabContent.classList.add("tab-page");
-            }
-        });
+              if (tabContent != null) {
+                  tabContent.classList.add("tab-page");
+              }
+          });
 
-        // Dann die ausgewählte Tabseite anzeigen
-        clickedTabItem.classList.add("active");
-        let tabContent = document.querySelector(clickedTabItem.dataset.tabContent);
+          // Dann die ausgewählte Tabseite anzeigen
+          clickedTabItem.classList.add("active");
+          let tabContent = pageDom.querySelector(clickedTabItem.dataset.tabContent);
 
-        if (tabContent != null) {
-            tabContent.classList.remove("tab-page");
-        }
-    }
+          if (tabContent != null) {
+              tabContent.classList.remove("tab-page");
+          }
+      }
 
      //Overview-Daten holen
     async _renderFoodTiles(html) {
