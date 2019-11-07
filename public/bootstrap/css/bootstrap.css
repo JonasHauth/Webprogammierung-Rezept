@@ -54,7 +54,6 @@
 }
 #addzutat, #removezutat {
   width: 49%;
-  max-width: 250px;
 }
 #submit-button:hover, #addzutat:hover, #removezutat:hover {
   border-bottom: 2px solid #c70000;
