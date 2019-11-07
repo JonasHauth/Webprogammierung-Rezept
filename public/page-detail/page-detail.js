@@ -86,12 +86,17 @@ class PageDetail {
      //Overview-Daten holen
     async _renderFoodTiles(html) {
 
-        // Platzhalter mit den eingelesenen Daten ersetzen
+        //Platzhalter für beide Bilder durch Bild ersetzen
         let reftoPicture = await this.app.db.rezepteFirestorage.child(this.rezept.img);
-        await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
+        let i = 0;
+        while (i != 2) {
+          await reftoPicture.getDownloadURL().then(url => { html = html.replace(`{IMG}`, url); });
+          i++;
+        }
+        //Andere Platzhalter ersetzen
         html = html.replace(/{NAME}/g, this.rezept.showname);
         html = html.replace(/{ZEIT}/g, this.rezept.zubereitungszeit);
-        html = html.replace(/{ZUTATEN}/g, this.rezept.zutaten);
+
         html = html.replace(/{ZUBEREITUNG}/g, this.rezept.zubereitung);
 
 
@@ -143,6 +148,19 @@ class PageDetail {
 
         let pageDom = document.createElement("div");
         pageDom.innerHTML = html;
+
+        //Rezept-Liste erstellen
+        let vorhandesObj = pageDom.querySelector(".zutaten-list");
+        let zutaten = this.rezept.zutaten;
+        for (let i = 0; i < zutaten.length; i++) {
+          let einzufügendesObj = document.createElement("li");
+          einzufügendesObj.innerHTML = zutaten [i];
+          vorhandesObj.appendChild(einzufügendesObj);
+        }
+
+
+
+
 
         return pageDom;
     }

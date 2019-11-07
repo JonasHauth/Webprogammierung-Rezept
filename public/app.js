@@ -67,7 +67,7 @@ class App {
       this.currentPageObject = new page.klass(this, this.db);
       this.currentPageObject.show(matches);
 
-      // kleines Menü auf neuer Seite  ausblenden
+      // Menü ausblenden auf neuer Seiten
       let menu = document.querySelector(".categories");
       if (!menu) return;
       let icon = document.querySelector(".icon-menu");
@@ -113,6 +113,21 @@ class App {
   // Hilfsmethode für das Setzen der CSS Datei
   setPageCss(css) {
       document.querySelector("#page-css").innerHTML = css;
+  }
+
+  // Hilfsmethode für das Setzen des Page Headers
+  setPageHeader(element) {
+      let container = document.querySelector("header > .content");
+      container.innerHTML = "";
+
+      if (!element) return;
+      let len = element.childNodes.length;
+
+      for (var i = 0; i < len; i++) {
+          let child = element.childNodes[0];
+          element.removeChild(child);
+          container.appendChild(child);
+      }
   }
 
   //Hilfsmethode für das Setzen des Seiteninhalts
