@@ -45,22 +45,6 @@
               app.run();
           });
 
-           // mouseover und mouseout-Listener fpr die Anzeige der Dropdown-Auswah
-          function mOver(obj) {
-            if (obj.className == "nav-link dropdown-toggle")
-                obj.nextElementSibling.className = "dropdown-menu show"
-            else {
-                obj.className = "dropdown-menu show"
-            }
-          }
-
-          function mOut(obj) {
-            if (obj.className == "nav-link dropdown-toggle")
-                obj.nextElementSibling.className = "dropdown-menu"
-            else {
-                obj.className = "dropdown-menu"
-            }
-          }
       </script>
 
       <!-- Dummy-Element für dynamisch nachgeladene CSS-Regeln -->
@@ -100,8 +84,8 @@
                   <li class="nav-item"><a class="nav-link" href="#">Startseite</a></li>
                   <li class="nav-item"><a class="nav-link" href="#/submit">Rezept einreichen</a></li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onmouseover="mOver(this)" onmouseout="mOut(this)">Kategorie</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="kategorie-auswahl" onmouseover="mOver(this)" onmouseout="mOut(this)">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategorie</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="kategorie-auswahl">
                       <li><a class="dropdown-item" href="#breakfast">Frühstück</a></li>
                       <li><a class="dropdown-item" href="#lunch">Mittagessen</a></li>
                     </ul>
