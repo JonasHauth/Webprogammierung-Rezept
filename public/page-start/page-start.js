@@ -20,6 +20,8 @@ class PageStart {
           console.error("Fehler beim Laden des HTML/CSS-Inhalts");
           return;
       }
+      this.app.setPageTitle("Startseite");
+      this.app.setPageCss(css);
 
       // Seite zur Anzeige bringen
       let pageDom = document.createElement("div");
@@ -27,8 +29,6 @@ class PageStart {
 
       await this._renderFoodTiles(pageDom);
 
-      this.app.setPageTitle("Startseite");
-      this.app.setPageCss(css);
       this.app.setPageContent(pageDom.querySelector("main"));
   }
 

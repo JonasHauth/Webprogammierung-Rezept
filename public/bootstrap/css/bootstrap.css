@@ -24,11 +24,10 @@
      margin-bottom: 20px;
  }
 
-/* Form */
+/* Form*/
 .contact{
   margin: 0;
 }
-
 .contact form p{
     display:block;
     margin:0;
@@ -41,42 +40,45 @@
   width: 100%;
 }
 
-#radio {
-  width: 10%;
+#star1, #star2, #star3, #star4, #star5 {
+  display: inline-block;
+  width: 15%;
+  max-width: 40px;
   font-weight: normal;
+  font-size: 1.5em;
 }
 
 #submit-button {
   margin-top: 1em;
   width: 100%;
 }
-input[type=text], input[type=number] {
+#addzutat, #removezutat {
+  width: 49%;
+  max-width: 250px;
+}
+#submit-button:hover, #addzutat:hover, #removezutat:hover {
+  border-bottom: 2px solid #c70000;
+}
+#star1:hover, #star2:hover, #star3:hover, #star4:hover, #star5:hover {
+  color: #c70000;
+}
+input[type=text], input[type=number], .contact select, .contact textarea {
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #343a40;
   border-radius: 4px;
 }
-input[type=text]:focus, input[type=number]:focus {
-  border-bottom: 2px solid red;
+input[type=text]:focus, input[type=number]:focus, .contact textarea:focus, .contact select:focus {
+  border-bottom: 2px solid #c70000;
 }
-.contact select {
-  border-radius: 4px;
-  border: none;
-  border-bottom: 2px solid black;
-}
-.contact textarea {
-  border: none;
-  border-bottom: 2px solid black;
-  border-radius: 4px;
-}
-.contact textarea:focus {
-  border-bottom: 2px solid red;
-}
+
 .contact button {
   border: none;
-  border-bottom: 2px solid black;
   border-radius: 4px;
-  color: black;
+  border-bottom: 2px solid #343a40;
+  color: white;
+  background-color: #343a40;
 }
+
 .alert {
   text-align: center;
   padding:10px;
@@ -86,19 +88,32 @@ input[type=text]:focus, input[type=number]:focus {
   display: none;
 }
 
-.contact form #zutaten input[type=number], .contact form #zutaten select {
-  width: 20%;
+/* Style Zutaten */
+.contact form #zutaten input[type=text] {
+  width: 100%;
   height: 30px;
-  margin-right: 1%;
   margin-bottom: 10px;
   vertical-align: top;
 }
-.contact form #zutaten input[type=text] {
-  width: 58%;
-  height: 30px;
-  vertical-align: top;
+
+/* Remove Arrows on Input type Number for Chrome an Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
 }
 
+/* Media Queries Formular */
+@media (min-width: 768px) {
+  .contact {
+    max-width: 650px;
+  }
+}
 
 
 

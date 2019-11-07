@@ -26,37 +26,32 @@ class PageSubmit {
       let pageDom = document.createElement("div");
       pageDom.innerHTML = html;
 
+      // Listener Zutatenfeld hinzufügen
       pageDom.querySelector("#addzutat").addEventListener('click',() => {
         var div = document.createElement('div');
-        div.innerHTML = '<div><input type="number" name="menge" class="menge" required><select type="text" name="einheit" class="einheit" required><option value="Tl">Tl</option><option value="g">g</option></select><input type="text" name="zutat" class="zutat" required></div>';
+        div.innerHTML = '<div><input type="text" name="zutat" class="zutat" placeholder="Menge und Zutat" required></div>';
         document.getElementById("zutaten").appendChild(div);
       });
 
+      // Listener letztes Zutatenfeld entfernen
       pageDom.querySelector("#removezutat").addEventListener('click',() => {
         zutaten = document.getElementById("zutaten");
         zutaten.removeChild(zutaten.lastChild);
       });
 
+      // Listener für das Aussehen und Value des Aufwands
+      pageDom.querySelector("#star1").addEventListener('click', this.onclickstar1);
+      pageDom.querySelector("#star2").addEventListener('click', this.onclickstar2);
+      pageDom.querySelector("#star3").addEventListener('click', this.onclickstar3);
+      pageDom.querySelector("#star4").addEventListener('click', this.onclickstar4);
+      pageDom.querySelector("#star5").addEventListener('click', this.onclickstar5);
+
+
+      // Submit Behandlung festlegen
       pageDom.querySelector("#contactForm").addEventListener('submit', (e) => {
         e.preventDefault();
 
-        var pushedmengen = [];
-        var pushedeinheiten = [];
         var pushedzutaten = [];
-
-        var mengen = document.getElementsByClassName('menge');
-        for(var i = 0; i < mengen.length; i++){
-          if (typeof mengen[i].value !== "undefined") {
-          pushedmengen.push(mengen[i].value);
-          }
-        };
-
-        var einheiten = document.getElementsByClassName('einheit');
-        for(var i = 0; i < einheiten.length; i++){
-          if (typeof einheiten[i].value !== "undefined") {
-          pushedeinheiten.push(einheiten[i].value);
-          }
-        };
 
         var zutaten = document.getElementsByClassName('zutat');
         for(var i = 0; i < zutaten.length; i++){
@@ -65,19 +60,16 @@ class PageSubmit {
           }
         };
 
-
-
         var showname = document.getElementById("contactForm").name.value;
         var zubereitung = document.getElementById("contactForm").zubereitung.value;
         var aufwand = document.getElementById("contactForm").auf.value;
         var zubereitungszeit = document.getElementById("contactForm").zubereitungszeit.value;
         var kategorie = document.getElementById("contactForm").kategorie.value;
 
-
         let file = document.querySelector('#image').files[0];
         var name = showname.replace(/[^A-Za-z0-9\-_]/g, '_');
 
-        this.db.writeRezept(name, showname, zubereitung, aufwand, zubereitungszeit, kategorie, pushedmengen, pushedeinheiten, pushedzutaten, file);
+        this.db.writeRezept(name, showname, zubereitung, aufwand, zubereitungszeit, kategorie, pushedzutaten, file);
 
         console.log(showname);
         console.log(name);
@@ -85,19 +77,17 @@ class PageSubmit {
         console.log(aufwand);
         console.log(zubereitungszeit);
         console.log(kategorie);
-        console.log(pushedmengen);
-        console.log(pushedeinheiten);
         console.log(pushedzutaten);
 
-        // Show alert
+        // Show Rezept eingereicht
         document.querySelector('.alert').style.display = 'block';
 
-        // Hide alert after 3 seconds
+        // Hide Rezepte eingereicht after 3 seconds
         setTimeout(function(){
           document.querySelector('.alert').style.display = 'none';
         },3000);
 
-        // Clear form
+        // Reset Form wenn erfolgreich eingereicht
         document.getElementById('contactForm').reset();
 
       });
@@ -111,10 +101,102 @@ class PageSubmit {
   // Ereignisbehandlung Submit Button
   // Speichert den Eintrag in Datenbank
 
-   writetoDB() {
+   onclickstar1() {
+     star1 = document.getElementById("star1");
+     star1.classList.add("icon-star-filled");
+     star1.classList.remove("icon-star");
 
-    //this.db.writeRezept(showname1, str1, "einfach machen", 5, 50, "Frühstück", ["Saab", "Volvo", "BMW"], file);
-    //this.db.writeRezept(showname2, str2, "einfach machen", 5, 50, "Mittagessen", ["Saab", "Volvo", "BMW"], file);
+     star2 = document.getElementById("star2");
+     star2.classList.add("icon-star");
+     star2.classList.remove("icon-star-filled");
+     star3 = document.getElementById("star3");
+     star3.classList.add("icon-star");
+     star3.classList.remove("icon-star-filled");
+     star4 = document.getElementById("star4");
+     star4.classList.add("icon-star");
+     star4.classList.remove("icon-star-filled");
+     star5 = document.getElementById("star5");
+     star5.classList.add("icon-star");
+     star5.classList.remove("icon-star-filled");
+     document.getElementById("stars").value = 1;
+   }
 
-  }
+   onclickstar2() {
+     star1 = document.getElementById("star1");
+     star1.classList.add("icon-star-filled");
+     star1.classList.remove("icon-star");
+     star2 = document.getElementById("star2");
+     star2.classList.add("icon-star-filled");
+     star2.classList.remove("icon-star");
+
+     star3 = document.getElementById("star3");
+     star3.classList.add("icon-star");
+     star3.classList.remove("icon-star-filled");
+     star4 = document.getElementById("star4");
+     star4.classList.add("icon-star");
+     star4.classList.remove("icon-star-filled");
+     star5 = document.getElementById("star5");
+     star5.classList.add("icon-star");
+     star5.classList.remove("icon-star-filled");
+     document.getElementById("stars").value = 2;
+   }
+
+   onclickstar3() {
+     star1 = document.getElementById("star1");
+     star1.classList.add("icon-star-filled");
+     star1.classList.remove("icon-star");
+     star2 = document.getElementById("star2");
+     star2.classList.add("icon-star-filled");
+     star2.classList.remove("icon-star");
+     star3 = document.getElementById("star3");
+     star3.classList.add("icon-star-filled");
+     star3.classList.remove("icon-star");
+
+     star4 = document.getElementById("star4");
+     star4.classList.add("icon-star");
+     star4.classList.remove("icon-star-filled");
+     star5 = document.getElementById("star5");
+     star5.classList.add("icon-star");
+     star5.classList.remove("icon-star-filled");
+     document.getElementById("stars").value = 3;
+   }
+
+   onclickstar4() {
+     star1 = document.getElementById("star1");
+     star1.classList.add("icon-star-filled");
+     star1.classList.remove("icon-star");
+     star2 = document.getElementById("star2");
+     star2.classList.add("icon-star-filled");
+     star2.classList.remove("icon-star");
+     star3 = document.getElementById("star3");
+     star3.classList.add("icon-star-filled");
+     star3.classList.remove("icon-star");
+     star4 = document.getElementById("star4");
+     star4.classList.add("icon-star-filled");
+     star4.classList.remove("icon-star");
+
+     star5 = document.getElementById("star5");
+     star5.classList.add("icon-star");
+     star5.classList.remove("icon-star-filled");
+     document.getElementById("stars").value = 4;
+   }
+
+   onclickstar5() {
+     star1 = document.getElementById("star1");
+     star1.classList.add("icon-star-filled");
+     star1.classList.remove("icon-star");
+     star2 = document.getElementById("star2");
+     star2.classList.add("icon-star-filled");
+     star2.classList.remove("icon-star");
+     star3 = document.getElementById("star3");
+     star3.classList.add("icon-star-filled");
+     star3.classList.remove("icon-star");
+     star4 = document.getElementById("star4");
+     star4.classList.add("icon-star-filled");
+     star4.classList.remove("icon-star");
+     star5 = document.getElementById("star5");
+     star5.classList.add("icon-star-filled");
+     star5.classList.remove("icon-star");
+     document.getElementById("stars").value = 5;
+   }
 }

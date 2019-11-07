@@ -8,11 +8,11 @@
     <form id="contactForm" class="contact">
       <p>
         <label>Name des Gerichts</label>
-        <input class="wideinput" type="text" name="name" required>
+        <input class="wideinput" type="text" name="name" placeholder="Namen des Gerichts" required>
       </p>
       <p>
         <label>Beschreibe die Zubereitung</label>
-        <textarea class="wideinput" name="zubereitung" rows="5" required></textarea>
+        <textarea class="wideinput" name="zubereitung" rows="5" placeholder="Beschreibe die Zubereitung" required></textarea>
       </p>
       <div>
         <label>Zutaten</label>
@@ -22,15 +22,16 @@
       </div>
       <p>
         <label>Aufwand</label>
-        <input id="radio" TYPE="radio" NAME="auf" VALUE=1 CHECKED onClick=0>1</input>
-        <input id="radio" TYPE="radio" NAME="auf" VALUE=2 onClick=0>2</input>
-        <input id="radio" TYPE="radio" NAME="auf" VALUE=3 onClick=0>3</input>
-        <input id="radio" TYPE="radio" NAME="auf" VALUE=4 onClick=0>4</input>
-        <input id="radio" TYPE="radio" NAME="auf" VALUE=5 onClick=0>5</input>
+        <i id="star1" class="icon-star-filled"></i>
+        <i id="star2" class="icon-star"></i>
+        <i id="star3" class="icon-star"></i>
+        <i id="star4" class="icon-star"></i>
+        <i id="star5" class="icon-star"></i>
+        <input id="stars" type="hidden" name="auf" value=1 />
       </p>
       <p>
         <label>Zubereitungszeit</label>
-        <input class="wideinput" type="number" name="zubereitungszeit" required>
+        <input class="wideinput" type="number" name="zubereitungszeit" placeholder="Zubereitungszeit in Minuten" required>
       </p>
       <p>
         <label>Kategorie</label>
@@ -44,7 +45,7 @@
         <input name="datei" type="file" accept="image/*" id="image" method=POST enctype=multipart/form-data>
       </p>
       <p>
-        <button id="submit-button" type="submit">Einreichen</button>
+        <button id="submit-button" type="submit">Rezept Einreichen</button>
       </p>
       </form>
     </div>
