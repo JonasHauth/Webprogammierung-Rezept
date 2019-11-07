@@ -22,6 +22,10 @@ class PageSubmit {
           return;
       }
 
+      // Titel und CSS setzen
+      this.app.setPageTitle("Einreichen", {isSubPage: true});
+      this.app.setPageCss(css);
+
       // Seite zur Anzeige bringen
       let pageDom = document.createElement("div");
       pageDom.innerHTML = html;
@@ -60,24 +64,19 @@ class PageSubmit {
           }
         };
 
+        // Werte aus form holen
         var showname = document.getElementById("contactForm").name.value;
         var zubereitung = document.getElementById("contactForm").zubereitung.value;
-        var aufwand = document.getElementById("contactForm").auf.value;
+        var aufwand = parseInt(document.getElementById("contactForm").auf.value);
         var zubereitungszeit = document.getElementById("contactForm").zubereitungszeit.value;
         var kategorie = document.getElementById("contactForm").kategorie.value;
-
         let file = document.querySelector('#image').files[0];
+
+        // String bearbeiten, sodass keine Sonderzeichen Probleme bereiten
         var name = showname.replace(/[^A-Za-z0-9\-_]/g, '_');
 
+        // writeRezept aus Datenbank aufrufen, die Datensätze in DB schreibt
         this.db.writeRezept(name, showname, zubereitung, aufwand, zubereitungszeit, kategorie, pushedzutaten, file);
-
-        console.log(showname);
-        console.log(name);
-        console.log(zubereitung);
-        console.log(aufwand);
-        console.log(zubereitungszeit);
-        console.log(kategorie);
-        console.log(pushedzutaten);
 
         // Show Rezept eingereicht
         document.querySelector('.alert').style.display = 'block';
@@ -92,15 +91,11 @@ class PageSubmit {
 
       });
 
-
-      this.app.setPageTitle("Einreichen", {isSubPage: true});
-      this.app.setPageCss(css);
+      // Seiteninhalt setzen
       this.app.setPageContent(pageDom.querySelector("main"));
   };
 
-  // Ereignisbehandlung Submit Button
-  // Speichert den Eintrag in Datenbank
-
+  // Klickbehandlug für die Sterne 1-5, setzt Aussehen und Wert eines versteckten inputs
    onclickstar1() {
      star1 = document.getElementById("star1");
      star1.classList.add("icon-star-filled");

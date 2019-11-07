@@ -24,23 +24,7 @@ class Database {
     this.rezepteCollection = this.rezepteFirestore.collection("rezepte");
   }
 
-/*
-Datenstruktur
-
-name: String, ist eindeutige ID. Das heißt es kann z.B. nur ein Rezept mit dem Namen Hähnchen geben. (Zweites Hähnchen überschreibt erstes Hähnchen)
-zubereitung: String
-aufwand: Wertebereicht 1-5, gespeichert als int.
-zubereitungszeit: int in Minuten
-img: Referenz auf Datei in Firestorage als String übergeben
-kategorie: String
-
-
-Implementation später:
-zutaten: Unterarray mit Strings
-
-*/
-
-
+  // Schreiben der übergebenen Variablen in die Datenbank
   async writeRezept(idname, showname, zubereitung, aufwand, zubereitungszeit, kategorie, zutaten, file) {
     // Pfad für Bild aus Datum und Dateinamen konkatenieren
     let path = (+new Date()) + '-' + file.name;
