@@ -12,6 +12,7 @@ class App {
 // Event Behandlung für die Änderung der URL registrieren.
   run() {
     document.querySelector("header nav .toggle-menu a").addEventListener("click", this._toggleHamburgerMenu);
+    document.querySelector("header nav .categories").addEventListener("click", this._dropdownMenu);
     window.addEventListener("hashchange", () => this._handleRouting());
     this._handleRouting();
 
@@ -43,6 +44,18 @@ class App {
       // neue Seite anfordern wollen.
       if (event) {
           event.preventDefault();
+      }
+  }
+  
+  //Dropdown-Auswahl ein- und ausblenden
+  _dropdownMenu(event) {
+      let menu = document.querySelector(".dropdown-menu");
+      if(!menu)
+        return;
+      if(menu.classList.contains("show")){
+          menu.classList.remove("show");
+      } else{
+          menu.classList.add("show");
       }
   }
 
@@ -87,6 +100,13 @@ class App {
 
           icon.classList.remove("icon-cancel");
           icon.classList.add("icon-menu");
+      }
+      // Dropdown-Auswahl wieder ausblenden
+      let dropdown = document.querySelector(".dropdown-menu");
+      if(!dropdown)
+        return;
+      if(dropdown.classList.contains("show")){
+          dropdown.classList.remove("show");
       }
   }
 
